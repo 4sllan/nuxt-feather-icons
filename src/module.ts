@@ -30,7 +30,6 @@ export default defineNuxtModule<ModuleOptions>({
 
         const {resolve} = createResolver(import.meta.url)
 
-
         icons.forEach(icon => {
             addComponent({
                 name: icon.componentName,
