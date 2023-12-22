@@ -3,9 +3,12 @@ import feather from 'feather-icons'
 import fs from 'fs-extra'
 import pascalcase from 'pascalcase';
 
-const templateComponent = (name, el) => `
-import { h } from 'vue'
+import {createResolver} from 'nuxt/kit'
 
+const {resolve} = createResolver(import.meta.url)
+
+
+const templateComponent = (name, el) => `
     export default {
         props: {
             size: {
@@ -46,7 +49,9 @@ Promise.all(icons.map(icon => {
     const el = feather.icons[icon.name].attrs;
     el.innerHTML = content;
     const component = templateComponent(icon.name, JSON.stringify(el))
-    const filepath = `./src/components/${icon.componentPascalName}.js`
+    const filepath = resolve(`./components/${icon.componentPascalName}.js`)
+    console.log(filepath)
+
     return fs.ensureDir(path.dirname(filepath))
         .then(() => fs.writeFile(filepath, component, 'utf8'))
 })).then(() => {
@@ -54,7 +59,7 @@ Promise.all(icons.map(icon => {
         .map(icon => `export { default as ${icon.componentPascalName} } from './runtime/components/${icon.componentPascalName}'`)
         .join('\n\n')
 
-    return fs.outputFile('./src/index.js', main, 'utf8')
+    return fs.outputFile(resolve('index.js'), main, 'utf8')
 })
 
 export default icons;
