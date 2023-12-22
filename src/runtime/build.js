@@ -4,6 +4,8 @@ import fs from 'fs-extra'
 import pascalcase from 'pascalcase';
 
 const templateComponent = (name, el) => `
+import { h } from 'vue'
+
     export default {
         props: {
             size: {
