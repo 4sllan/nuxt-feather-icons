@@ -7,7 +7,6 @@ import {createResolver} from '@nuxt/kit'
 
 const {resolve} = createResolver(import.meta.url)
 
-
 const templateComponent = (name, el) => `
     export default {
         props: {
@@ -49,7 +48,8 @@ Promise.all(icons.map(icon => {
     const el = feather.icons[icon.name].attrs;
     el.innerHTML = content;
     const component = templateComponent(icon.name, JSON.stringify(el))
-    const filepath = resolve(`./components/${icon.componentPascalName}.js`)
+    const filepath = resolve(`./runtime/components/${icon.componentPascalName}.js`)
+
     console.log(filepath)
 
     return fs.ensureDir(path.dirname(filepath))
