@@ -33,7 +33,8 @@ export default defineNuxtModule<ModuleOptions>({
         icons.forEach(icon => {
             addComponent({
                 name: icon.componentName,
-                filePath: resolve(`./runtime/components/${icon.componentPascalName}.js`),
+                filePath: 'nuxt-feather-icons',
+                export: icon.componentPascalName,
                 pascalName: icon.componentPascalName,
                 global: false,
                 mode: 'all',
