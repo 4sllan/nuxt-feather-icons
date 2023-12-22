@@ -44,15 +44,15 @@ Promise.all(icons.map(icon => {
     const el = feather.icons[icon.name].attrs;
     el.innerHTML = content;
     const component = templateComponent(icon.name, JSON.stringify(el))
-    const filepath = `./runtime/components/${icon.componentPascalName}.js`
+    const filepath = `./dist/runtime/components/${icon.componentPascalName}.js`
     return fs.ensureDir(path.dirname(filepath))
         .then(() => fs.writeFile(filepath, component, 'utf8'))
 })).then(() => {
     const main = icons
-        .map(icon => `export { default as ${icon.componentPascalName} } from './runtime/${icon.componentPascalName}'`)
+        .map(icon => `export { default as ${icon.componentPascalName} } from './dist/runtime/${icon.componentPascalName}'`)
         .join('\n\n')
 
-    return fs.outputFile('./runtime/index.js', main, 'utf8')
+    return fs.outputFile('./dist/index.js', main, 'utf8')
 })
 
 export default icons;
