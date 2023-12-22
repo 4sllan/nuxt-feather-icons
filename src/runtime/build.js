@@ -3,7 +3,7 @@ import feather from 'feather-icons'
 import fs from 'fs-extra'
 import pascalcase from 'pascalcase';
 
-import {createResolver} from 'nuxt/kit'
+import {createResolver} from '@nuxt/kit'
 
 const {resolve} = createResolver(import.meta.url)
 
