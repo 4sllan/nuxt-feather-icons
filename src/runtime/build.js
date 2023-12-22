@@ -49,7 +49,7 @@ Promise.all(icons.map(icon => {
         .then(() => fs.writeFile(filepath, component, 'utf8'))
 })).then(() => {
     const main = icons
-        .map(icon => `export { default as ${icon.componentPascalName} } from './dist/runtime/${icon.componentPascalName}'`)
+        .map(icon => `export { default as ${icon.componentPascalName} } from './runtime/components/${icon.componentPascalName}'`)
         .join('\n\n')
 
     return fs.outputFile('./dist/index.js', main, 'utf8')

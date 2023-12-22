@@ -35,7 +35,7 @@ export default defineNuxtModule<ModuleOptions>({
                 name: icon.componentName,
                 filePath: resolve(`./runtime/components/${icon.componentPascalName}.js`),
                 pascalName: icon.componentPascalName,
-                global: true,
+                global: false,
                 mode: 'all',
             })
         })
