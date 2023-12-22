@@ -52,17 +52,9 @@ Promise.all(icons.map(icon => {
     const component = templateComponent(icon.name, JSON.stringify(el))
     const filepath = resolve(`./runtime/components/${icon.componentPascalName}.js`)
 
-    console.log(filepath)
-
     return fs.ensureDir(path.dirname(filepath))
         .then(() => fs.writeFile(filepath, component, 'utf8'))
-})).then(() => {
-    const main = icons
-        .map(icon => `export { default as ${icon.componentPascalName} } from './runtime/components/${icon.componentPascalName}'`)
-        .join('\n\n')
-
-    return fs.outputFile(resolve('index.js'), main, 'utf8')
-})
+}))
 
 export default icons;
 
