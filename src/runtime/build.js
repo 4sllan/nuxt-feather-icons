@@ -46,7 +46,7 @@ Promise.all(icons.map(icon => {
     const el = feather.icons[icon.name].attrs;
     el.innerHTML = content;
     const component = templateComponent(icon.name, JSON.stringify(el))
-    const filepath = `./dist/runtime/components/${icon.componentPascalName}.js`
+    const filepath = `./src/components/${icon.componentPascalName}.js`
     return fs.ensureDir(path.dirname(filepath))
         .then(() => fs.writeFile(filepath, component, 'utf8'))
 })).then(() => {
@@ -54,7 +54,7 @@ Promise.all(icons.map(icon => {
         .map(icon => `export { default as ${icon.componentPascalName} } from './runtime/components/${icon.componentPascalName}'`)
         .join('\n\n')
 
-    return fs.outputFile('./dist/index.js', main, 'utf8')
+    return fs.outputFile('./src/index.js', main, 'utf8')
 })
 
 export default icons;
