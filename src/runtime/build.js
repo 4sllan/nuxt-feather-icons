@@ -8,6 +8,8 @@ import {createResolver} from '@nuxt/kit'
 const {resolve} = createResolver(import.meta.url)
 
 const templateComponent = (name, el) => `
+import { h } from 'vue'
+
     export default {
         props: {
             size: {
