@@ -44,7 +44,7 @@ Promise.all(icons.map(icon => {
   const component = componentTemplate(icon.pascalCasedComponentName, svg)
   const filepath = `./src/components/${icon.pascalCasedComponentName}.js`
   return fs.ensureDir(path.dirname(filepath))
-    .then(() => fs.writeJsonSync(filepath, component, 'utf8'))
+    .then(() => fs.writeFile(filepath, component, 'utf8'))
 })).then(() => {
   const main = icons
     .map(icon => `export { default as ${icon.pascalCasedComponentName} } from '../icons/${icon.pascalCasedComponentName}'`)

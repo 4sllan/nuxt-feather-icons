@@ -33,26 +33,29 @@ const templateComponent = (name, el) => `
     }
 `.trim()
 
-const build = Object.keys(feather.icons).map(name => ({
+const icons = Object.keys(feather.icons).map(name => ({
     name,
     componentName: `${name}-icon`,
     componentPascalName: pascalcase(`${name}-icon`)
 }))
 
-Promise.all(build.map(icon => {
+Promise.all(icons.map(icon => {
     const content = feather.icons[icon.name].contents;
     const el = feather.icons[icon.name].attrs;
-    el.innerHTML = content
-
+    el.innerHTML = content;
     const component = templateComponent(icon.name, JSON.stringify(el))
     const filepath = `./runtime/components/${icon.componentPascalName}.js`
     return fs.ensureDir(path.dirname(filepath))
         .then(() => fs.writeFile(filepath, component, 'utf8'))
 })).then(() => {
-    return fs.outputFile('./runtime/index.js', build, 'utf8')
+    const main = icons
+        .map(icon => `export { default as ${icon.componentPascalName} } from './runtime/${icon.componentPascalName}'`)
+        .join('\n\n')
+
+    return fs.outputFile('./runtime/index.js', main, 'utf8')
 })
 
-export default build;
+export default icons;
 
 
 
