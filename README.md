@@ -8,7 +8,7 @@
 
 
 [![Static Badge](https://img.shields.io/badge/NPM:nuxt-feather-icons)](https://www.npmjs.com/package/nuxt-feather-icons)
-[![Static Badge](https://img.shields.io/badge/GITHUB:nuxt-feather-icons)](https://www.npmjs.com/package/nuxt-feather-icons)
+[![Static Badge](https://img.shields.io/badge/GITHUB:nuxt-feather-icons)](https://github.com/4sllan/nuxt-feather-icons)
 [![npm version](https://img.shields.io/npm/v/nuxt-feather-icons/latest.svg?style=flat-square)](https://www.npmjs.com/package/nuxt-feather-icons)
 [![npm downloads](https://img.shields.io/npm/dt/nuxt-feather-icons.svg?style=flat-square)](https://www.npmjs.com/package/nuxt-feather-icons)
 
@@ -38,28 +38,33 @@ modules: [
 
 ## Sizing
 
-Os ícones são dimensionados automaticamente com base no tamanho da fonte do elemento pai por padrão.
+<p>Os ícones são dimensionados automaticamente com base no tamanho da fonte do elemento pai por padrão.</p>
+<p></p>
+<p>No entanto, se desejar um tamanho personalizado, você pode utilizar o atributo size. Para dimensionamento com base em
+múltiplos, especifique o múltiplo desejado seguido do caractere x.</p>
 
-No entanto, se desejar um tamanho personalizado, você pode utilizar o atributo size. Para dimensionamento com base em
-múltiplos, especifique o múltiplo desejado seguido do caractere x.
+<br/>
 
-Icons are automatically sized based on the font size of the parent element by default.
-
-However, if you wish to customize the size, you can use the size attribute. For sizing based on multiples, specify the
-desired multiple followed by an x.
-
-```html
-
-<XIcon size="1.5x"></XIcon>
-```
-
-Além disso, é possível definir um tamanho absoluto em pixels (px) simplesmente passando um número inteiro.
-Additionally, you can set an absolute size in pixels (px) by simply passing an integer.
+<p>Icons are automatically sized based on the font size of the parent element by default.</p>
+<p>However, if you wish to customize the size, you can use the size attribute. For sizing based on multiples, specify the
+desired multiple followed by an x.</p>
 
 ```html
 
 <XIcon size="1.5x"></XIcon>
 ```
 
-Essa flexibilidade permite que você ajuste facilmente o tamanho dos ícones conforme suas necessidades específicas.
-This flexibility allows you to easily adjust the icon size according to your specific needs.
+<p>Além disso, é possível definir um tamanho absoluto em pixels (px) simplesmente passando um número inteiro.</p>
+<p>Additionally, you can set an absolute size in pixels (px) by simply passing an integer.</p>
+
+```html
+
+<XIcon size="1.5x"></XIcon>
+```
+
+<p>Essa flexibilidade permite que você ajuste facilmente o tamanho dos ícones conforme suas necessidades específicas.</p>
+<p>This flexibility allows you to easily adjust the icon size according to your specific needs.</p>
+
+## ⚖️ License
+
+Released under [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
