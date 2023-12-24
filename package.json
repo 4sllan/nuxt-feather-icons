@@ -1,6 +1,6 @@
 {
   "name": "nuxt-feather-icons",
-  "version": "1.1.5",
+  "version": "1.1.4",
   "description": "Nuxt 3 feather Icons",
   "repository": "https://github.com/4sllan/nuxt-feather-icons",
   "author": "Aslan Gama <@4slan>",
@@ -36,8 +36,5 @@
     "feather-icons": "^4.29.1",
     "fs-extra": "^11.2.0",
     "pascalcase": "^2.0.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
