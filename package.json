@@ -1,8 +1,8 @@
 {
   "name": "nuxt-feather-icons",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Nuxt 3 feather Icons",
-  "repository": "4slanK/nuxt-feather-icons",
+  "repository": "4sllan/nuxt-feather-icons",
   "license": "MIT",
   "type": "module",
   "exports": {
