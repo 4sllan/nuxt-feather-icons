@@ -3,13 +3,16 @@ import {
     createResolver,
     defineNuxtModule,
     addComponent
-} from 'nuxt/kit'
+} from '@nuxt/kit'
+import type {
+    ModuleOptions,
+} from './runtime/types'
 
 import icons from './runtime/build.js'
 
 const PACKAGE_NAME = 'nuxt-feather-icons'
 
-export default defineNuxtModule({
+export default defineNuxtModule<ModuleOptions>({
 
     meta: {
         name: PACKAGE_NAME,
@@ -26,7 +29,6 @@ export default defineNuxtModule({
         const logger = useLogger(PACKAGE_NAME)
 
         const {resolve} = createResolver(import.meta.url)
-
 
         icons.forEach(icon => {
             addComponent({
