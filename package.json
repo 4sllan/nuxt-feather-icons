@@ -1,9 +1,8 @@
 {
   "name": "nuxt-feather-icons",
-  "version": "1.1.2",
-  "description": "Nuxt 3 Feather icons",
-  "repository": "4sllan/nuxt-feather-icons",
-  "author": "Aslan Gama <@4slan>",
+  "version": "1.1.1",
+  "description": "Nuxt 3 feather Icons",
+  "repository": "4slanK/nuxt-feather-icons",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -36,5 +35,5 @@
     "feather-icons": "^4.29.1",
     "fs-extra": "^11.2.0",
     "pascalcase": "^2.0.0"
-  },
+  }
 }
