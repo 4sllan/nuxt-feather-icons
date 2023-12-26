@@ -11,7 +11,7 @@
 [![Static Badge](https://img.shields.io/badge/GITHUB:nuxt-feather-icons)](https://github.com/4sllan/nuxt-feather-icons)
 [![npm version](https://img.shields.io/npm/v/nuxt-feather-icons/latest.svg?style=flat-square)](https://www.npmjs.com/package/nuxt-feather-icons)
 [![npm downloads](https://img.shields.io/npm/dt/nuxt-feather-icons.svg?style=flat-square)](https://www.npmjs.com/package/nuxt-feather-icons)
-
+[![Static Badge](https://img.shields.io/badge/-%E2%99%A5%20Sponsors-ec5cc6?style=flat-square)](https://github.com/sponsors/4sllan)
 
 </div>
 
