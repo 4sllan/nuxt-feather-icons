@@ -39,7 +39,7 @@ modules: [
 ## Sizing
 
 <p>Os ícones são dimensionados automaticamente com base no tamanho da fonte do elemento pai por padrão.</p>
-<p></p>
+<br/>
 <p>No entanto, se desejar um tamanho personalizado, você pode utilizar o atributo size. Para dimensionamento com base em
 múltiplos, especifique o múltiplo desejado seguido do caractere x.</p>
 
@@ -59,7 +59,7 @@ desired multiple followed by an x.</p>
 
 ```html
 
-<XIcon size="1.5x"></XIcon>
+<XIcon size="30"></XIcon>
 ```
 
 <p>Essa flexibilidade permite que você ajuste facilmente o tamanho dos ícones conforme suas necessidades específicas.</p>
