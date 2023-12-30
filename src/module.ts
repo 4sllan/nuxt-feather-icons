@@ -3,14 +3,20 @@ import {
     createResolver,
     defineNuxtModule,
     addComponent
-} from '@nuxt/kit'
-import type {
-    ModuleOptions,
-} from './runtime/types'
+} from 'nuxt/kit'
 
-import icons from './runtime/build.js'
+interface ModuleOptions {
 
-const PACKAGE_NAME = 'nuxt-feather-icons'
+}
+
+interface ModuleIconsNames {
+    componentName: string
+    componentPascalName: string
+}
+
+import build from "./runtime/build";
+
+const PACKAGE_NAME: string = 'nuxt-feather-icons'
 
 export default defineNuxtModule<ModuleOptions>({
 
@@ -30,14 +36,17 @@ export default defineNuxtModule<ModuleOptions>({
 
         const {resolve} = createResolver(import.meta.url)
 
-        icons.forEach(icon => {
-            addComponent({
-                name: icon.componentName,
-                filePath: resolve(`./runtime/components/${icon.componentPascalName}.js`),
-                pascalName: icon.componentPascalName,
-                global: false,
-                mode: 'all',
+        build.then((icons: ModuleIconsNames[]): void => {
+            icons.forEach(j => {
+                addComponent({
+                    name: j.componentName,
+                    filePath: resolve(`./runtime/components/${j.componentPascalName}.js`),
+                    pascalName: j.componentPascalName,
+                    global: false,
+                    mode: 'all',
+                })
             })
         })
+
     }
 })

@@ -1,13 +1,36 @@
 import path from 'path'
+// @ts-ignore
 import feather from 'feather-icons'
+// @ts-ignore
 import fs from 'fs-extra'
+// @ts-ignore
 import pascalcase from 'pascalcase';
 
 import {createResolver} from '@nuxt/kit'
 
 const {resolve} = createResolver(import.meta.url)
 
-const templateComponent = (name, el) => `
+type ModuleIconsNames = {
+    name: string
+    componentName: string
+    componentPascalName: string
+}
+
+type ModuleFeatherIconsAttrs = {
+    xmlns: string
+    width: number
+    height: number
+    viewBox: string,
+    fill?: string,
+    stroke?: string,
+    'stroke-width'?: number,
+    'stroke-linecap'?: string,
+    'stroke-linejoin'?: string,
+    class: string
+    innerHTML: string
+}
+
+const templateComponent = (name: string, el: string): string => `
 import { h } from 'vue'
 
     export default {
@@ -39,24 +62,28 @@ import { h } from 'vue'
     }
 `.trim()
 
-const icons = Object.keys(feather.icons).map(name => ({
+const icons: ModuleIconsNames[] = Object.keys(feather.icons).map(name => ({
     name,
     componentName: `${name}-icon`,
     componentPascalName: pascalcase(`${name}-icon`)
 }))
 
-Promise.all(icons.map(icon => {
-    const content = feather.icons[icon.name].contents;
-    const el = feather.icons[icon.name].attrs;
+const build = Promise.all(icons.map(icon => {
+    const content: string = feather.icons[icon.name].contents;
+    const el: ModuleFeatherIconsAttrs = feather.icons[icon.name].attrs;
     el.innerHTML = content;
-    const component = templateComponent(icon.name, JSON.stringify(el))
-    const filepath = resolve(`./runtime/components/${icon.componentPascalName}.js`)
+    const component: string = templateComponent(icon.name, JSON.stringify(el))
+    const filepath: string = resolve(`./runtime/components/${icon.componentPascalName}.js`)
 
-    return fs.ensureDir(path.dirname(filepath))
+    fs.ensureDir(path.dirname(filepath))
         .then(() => fs.writeFile(filepath, component, 'utf8'))
-}))
 
-export default icons;
+    return {
+        componentPascalName: icon.componentPascalName,
+        componentName: icon.componentName
+    }
+}))
+export default build;
 
 
 
