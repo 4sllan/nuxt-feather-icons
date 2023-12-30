@@ -53,7 +53,7 @@ desired multiple followed by an x.</p>
 
 ```html
 
-<XIcon size="1.5x"></XIcon>
+<XIcon size="1.5x" class="custom-class"></XIcon>
 ```
 
 <p>Além disso, é possível definir um tamanho absoluto em pixels (px) simplesmente passando um número inteiro.</p>
@@ -61,7 +61,7 @@ desired multiple followed by an x.</p>
 
 ```html
 
-<XIcon size="30"></XIcon>
+<XIcon size="30" class="custom-class"></XIcon>
 ```
 
 <p>Essa flexibilidade permite que você ajuste facilmente o tamanho dos ícones conforme suas necessidades específicas.</p>
