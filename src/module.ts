@@ -3,7 +3,7 @@ import {
     createResolver,
     defineNuxtModule,
     addComponent
-} from 'nuxt/kit'
+} from '@nuxt/kit'
 
 interface ModuleOptions {
 
