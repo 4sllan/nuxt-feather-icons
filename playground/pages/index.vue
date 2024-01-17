@@ -3,9 +3,5 @@
 </script>
 
 <template>
-  <XIcon size="1.5x"></XIcon>
+  <NuxtWelcome></NuxtWelcome>
 </template>
-
-<style scoped>
-
-</style>
