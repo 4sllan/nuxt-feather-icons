@@ -1,7 +1,8 @@
 export default defineNuxtConfig({
-    devtools: {enabled: true},
-    imports: {
-        autoImport: true
+    devtools: {
+        enabled: true
     },
-    modules: ["nuxt-feather-icons"]
+    modules: [
+        "nuxt-feather-icons"
+    ]
 })
