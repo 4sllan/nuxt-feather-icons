@@ -10,8 +10,8 @@
 [![Static Badge][github-src]][github-href]
 [![npm version][npm-v-src]][npm-v-href]
 ![GitHub License][license]
-[![Nuxt][nuxt-src]][nuxt-href]
 [![npm downloads][npm-d-src]][npm-d-href]
+[![Nuxt][nuxt-src]][nuxt-href]
 [![Static Badge][sponsor-src]][sponsor-href]
 
 ## Install
