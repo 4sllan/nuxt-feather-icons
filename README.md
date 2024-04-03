@@ -20,10 +20,6 @@
 npx nuxi@latest module add nuxt-feather-icons
 ```
 
-```bash
-npx nuxi@latest module add nuxt-feather-icons
-```
-
 ## Usage
 
 ### nuxt.config.js
