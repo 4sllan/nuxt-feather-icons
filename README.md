@@ -17,11 +17,7 @@
 ## Install
 
 ```bash
-npm i nuxt-feather-icons
-```
-
-```bash
-yarn add nuxt-feather-icons
+npx nuxi@latest module add nuxt-feather-icons
 ```
 
 ## Usage
