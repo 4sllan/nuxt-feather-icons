@@ -6,12 +6,10 @@
 <br>
 
 
-[![Static Badge][npm-src]][npm-href]
-[![Static Badge][github-src]][github-href]
 [![npm version][npm-v-src]][npm-v-href]
-![GitHub License][license]
+[![GitHub License][license]][license-href]
 [![npm downloads][npm-d-src]][npm-d-href]
-[![Nuxt][nuxt-src]][nuxt-href]
+[![Nuxt nuxt-feather-icons][nuxt-src]][nuxt-href]
 [![Static Badge][sponsor-src]][sponsor-href]
 
 ## Install
@@ -54,13 +52,6 @@ desired multiple followed by an x.</p>
 
 Released under [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
 
-[npm-src]: https://img.shields.io/badge/NPM:nuxt-feather-icons?style=flat-square&colorA=18181B&colorB=28CF8D
-
-[npm-href]:https://www.npmjs.com/package/nuxt-feather-icons
-
-[github-src]: https://img.shields.io/badge/GITHUB:nuxt-feather-icons?style=flat-square&colorA=18181B&colorB=28CF8D
-
-[github-href]: https://github.com/4sllan/nuxt-feather-icons
 
 [npm-v-src]: https://img.shields.io/npm/v/nuxt-feather-icons/latest.svg?style=flat-square&colorA=18181B&colorB=28CF8D
 
@@ -68,9 +59,11 @@ Released under [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
 
 [license]: https://img.shields.io/github/license/4sllan/nuxt-feather-icons?style=flat-square&colorA=18181B&colorB=28CF8D
 
+[license-href]: https://github.com/4sllan/nuxt-feather-icons
+
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 
-[nuxt-href]: https://nuxt.com
+[nuxt-href]: https://nuxt.com/
 
 [npm-d-src]: https://img.shields.io/npm/dt/nuxt-feather-icons.svg?style=flat-square&colorA=18181B&colorB=28CF8D
 
