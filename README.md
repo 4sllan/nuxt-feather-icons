@@ -48,6 +48,37 @@ desired multiple followed by an x.</p>
 
 <p>This flexibility allows you to easily adjust the icon size according to your specific needs.</p>
 
+```html
+<script setup>
+const menuItems = ref([
+  {
+    icon: resolveComponent('HomeIcon'),
+  },
+  {
+    icon: resolveComponent('UsersIcon'),
+  },
+  {
+    icon: resolveComponent('LayersIcon'),
+  },
+])
+</script>
+
+<template>
+  <ul>
+    <li v-for="(item, index) in menuItems" :key="index">
+      <component :is="item.icon" size="2x"/>
+    </li>
+  </ul>
+</template>
+
+```
+
+<p>Use the resolveComponent function to dynamically load icon components. In the template, leverage the <component> tag and specify the corresponding icon using the :is property.</p>
+<p>This approach simplifies the creation of dynamic and reusable icon lists, making it ideal for menus or other components requiring flexibility with multiple icons.</p>
+
+
+
+
 ## ⚖️ License
 
 Released under [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
