@@ -2,14 +2,22 @@
   "name": "nuxt-feather-icons",
   "version": "1.2.6",
   "description": "Nuxt 4 feather Icons",
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "feather-icons",
+    "icons"
+  ],
   "repository": "https://github.com/4sllan/nuxt-feather-icons",
   "author": "Aslan Gama <@4slan>",
   "license": "MIT",
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/types.d.mts",
-      "import": "./dist/module.mjs"
+      "import": "./dist/module.mjs",
+      "default": "./dist/module.mjs"
     }
   },
   "main": "./dist/module.mjs",
@@ -21,9 +29,7 @@
     }
   },
   "files": [
-    "dist",
-    "runtime/build.js",
-    "module.js"
+    "dist"
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",

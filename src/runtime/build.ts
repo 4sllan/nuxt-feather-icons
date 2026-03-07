@@ -15,8 +15,7 @@ type FeatherAttrs = {
 }
 
 function pascalCase(str: string) {
-    return str
-        .replace(/(^\w|-\w)/g, s => s.replace('-', '').toUpperCase())
+    return str.replace(/(^\w|-\w)/g, s => s.replace('-', '').toUpperCase())
 }
 
 const templateComponent = (attrs: FeatherAttrs, innerHTML: string) => `
@@ -59,29 +58,51 @@ const icons = Object.keys(feather.icons).map((name) => ({
     componentPascalName: pascalCase(`${name}-icon`)
 }))
 
-const build = Promise.all(
-    icons.map(async (icon) => {
-        const iconData = feather.icons[icon.name]
+async function writeIfChanged(file: string, content: string) {
+    try {
+        const existing = await fs.readFile(file, 'utf8')
 
-        if (!iconData) {
-            throw new Error(`Icon "${icon.name}" not found in feather-icons`)
+        if (existing === content) {
+            return
         }
+    } catch {
+        // arquivo não existe
+    }
 
-        const attrs = { ...iconData.attrs }
-        const innerHTML = iconData.contents
+    await fs.writeFile(file, content, 'utf8')
+}
 
-        const component = templateComponent(attrs, innerHTML)
+async function buildIcons(): Promise<ModuleIconsNames[]> {
+    const componentsDir = resolve('./components')
 
-        const filepath = resolve(`./components/${icon.componentPascalName}.js`)
+    await fs.mkdir(componentsDir, { recursive: true })
 
-        await fs.mkdir(path.dirname(filepath), { recursive: true })
-        await fs.writeFile(filepath, component, 'utf8')
+    return Promise.all(
+        icons.map(async (icon) => {
+            const iconData = feather.icons[icon.name]
 
-        return {
-            componentName: icon.componentName,
-            componentPascalName: icon.componentPascalName
-        }
-    })
-)
+            if (!iconData) {
+                throw new Error(`Icon "${icon.name}" not found in feather-icons`)
+            }
 
-export default build
+            const attrs = { ...iconData.attrs }
+            const innerHTML = iconData.contents
+
+            const component = templateComponent(attrs, innerHTML)
+
+            const filepath = path.join(
+                componentsDir,
+                `${icon.componentPascalName}.js`
+            )
+
+            await writeIfChanged(filepath, component)
+
+            return {
+                componentName: icon.componentName,
+                componentPascalName: icon.componentPascalName
+            }
+        })
+    )
+}
+
+export default buildIcons()
