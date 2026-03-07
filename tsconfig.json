@@ -1,5 +1,4 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
   "files": [],
   "references": [
     {
@@ -14,5 +13,17 @@
     {
       "path": "./.nuxt/tsconfig.node.json"
     }
+  ],
+  "include": [
+    "module.ts",
+    "runtime/**/*.ts",
+    "types/**/*.d.ts"
+  ],
+
+  "exclude": [
+    "dist",
+    "node_modules",
+    ".nuxt",
+    "playground"
   ]
 }
