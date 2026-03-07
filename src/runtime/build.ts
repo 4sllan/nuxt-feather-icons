@@ -72,7 +72,7 @@ const build = Promise.all(
 
         const component = templateComponent(attrs, innerHTML)
 
-        const filepath = resolve(`./runtime/components/${icon.componentPascalName}.js`)
+        const filepath = resolve(`./components/${icon.componentPascalName}.js`)
 
         await fs.mkdir(path.dirname(filepath), { recursive: true })
         await fs.writeFile(filepath, component, 'utf8')

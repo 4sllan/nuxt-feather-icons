@@ -21,7 +21,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "runtime/build.js",
+    "module.js"
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",

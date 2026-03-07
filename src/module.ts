@@ -2,8 +2,8 @@ import {
     useLogger,
     createResolver,
     defineNuxtModule,
-    addComponent,
-    addTypeTemplate
+    addTypeTemplate,
+    addComponentsDir
 } from '@nuxt/kit'
 
 import build from './runtime/build'
@@ -39,24 +39,16 @@ export default defineNuxtModule<ModuleOptions>({
 
     async setup(options, nuxt) {
         const logger = useLogger(PACKAGE_NAME)
-        const {resolve} = createResolver(import.meta.url)
+        const { resolve } = createResolver(import.meta.url)
 
         logger.info('Generating Feather icons components...')
 
         const icons: ModuleIconsNames[] = await build
 
-        icons.forEach(icon => {
-            const componentName =
-                options.prefix
-                    ? `${options.prefix}${icon.componentPascalName}`
-                    : icon.componentPascalName
-
-            addComponent({
-                name: componentName,
-                export: 'default',
-                filePath: resolve(`./runtime/components/${icon.componentPascalName}.js`),
-                global: false
-            })
+        addComponentsDir({
+            path: resolve('runtime/components'),
+            pathPrefix: false,
+            global: false
         })
 
         addTypeTemplate({
