@@ -1,33 +1,46 @@
-name: ci
+name: 🧪 CI Develop
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+      - release
 
 jobs:
-  build:
+  unit:
+    name: 🧩 Unit + Lint + Typecheck
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm test
 
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Ensure pnpm is available
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔧 Preparar ambiente Nuxt
+        run: npx nuxi prepare
+
+      - name: 🔧 Preparar ambiente do Playground
+        run: cd playground && npx nuxi prepare
+
+      - name: 🚀 Iniciar Nuxt no Playground
+        run: cd playground && pnpm dev &  # Roda em segundo plano
+
+      - name: ⏳ Aguardar o servidor estar pronto
+        run: sleep 10  # Ajuste o tempo conforme necessário
+
+      - name: Run Unit Tests
+        run: pnpm test
