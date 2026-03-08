@@ -49,22 +49,23 @@ Feather Icons are automatically registered as components. You can use any icon l
 
 ## Dynamic Icons
 
-```html
-
+```vue
 <script setup lang="ts">
-    import {ref, resolveComponent} from 'vue'
+    import { shallowRef, resolveComponent } from 'vue'
 
-    const menuItems = ref([
-        {icon: resolveComponent('HomeIcon')},
-        {icon: resolveComponent('UsersIcon')},
-        {icon: resolveComponent('LayersIcon')},
+    // Menu items com componentes resolvidos
+    const menuItems = shallowRef([
+        { icon: resolveComponent('HomeIcon') },
+        { icon: resolveComponent('UsersIcon') },
+        { icon: resolveComponent('LayersIcon') },
     ])
 </script>
 
 <template>
     <ul>
         <li v-for="(item, index) in menuItems" :key="index">
-            <component :is="item.icon" size="2x"/>
+            <component :is="item.icon" size="2x" class="mr-2"/>
+            {{ item.icon.name }}
         </li>
     </ul>
 </template>
