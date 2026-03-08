@@ -30,7 +30,7 @@ export default defineNuxtModule<ModuleOptions>({
         name: PACKAGE_NAME,
         configKey: 'nuxtFeatherIcons',
         compatibility: {
-            nuxt: '>=4.0.0',
+            nuxt: '>=3.0.0',
         }
     },
 
