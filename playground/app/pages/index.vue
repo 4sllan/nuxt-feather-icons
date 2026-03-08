@@ -14,7 +14,7 @@ const menuItems = ([
 
 <template>
   <div>
-    <XIcon size="30" class="custom-class"></XIcon>
+    <XIcon size="30" class="custom-class"/>
 
     <ul>
       <li v-for="(item, index) in menuItems" :key="index">
