@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   ],
 })
 ```
-Feather Icons are automatically registered as components. You can use any icon like `<HomeIcon />.
+Feather Icons are automatically registered as components. You can use any icon like `<HomeIcon />`.
 
 ## Basic Usage
 
