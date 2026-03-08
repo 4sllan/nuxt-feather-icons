@@ -49,7 +49,7 @@ Feather Icons are automatically registered as components. You can use any icon l
 
 ## Dynamic Icons
 
-```vue
+```html
 
 <script setup lang="ts">
     import {ref, resolveComponent} from 'vue'
