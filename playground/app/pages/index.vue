@@ -37,20 +37,21 @@ const copyIconName = (name: string) => {
 <template>
   <div class="container">
     <header class="header">
-      <h1 class="title">Nuxt Icons Playground</h1>
-      <p class="subtitle">Coleção de ícones lindos e open source</p>
+      <img src="https://raw.githubusercontent.com/4sllan/nuxt-feather-icons/refs/heads/main/.github/nuxt-feather-icons.svg" width="100"/>
+      <h1 class="title">Nuxt Feather Icons</h1>
+      <p class="subtitle">A beautiful collection of open-source icons</p>
 
       <div class="controls">
         <input
             v-model="searchQuery"
             type="text"
-            placeholder="Buscar ícones..."
+            placeholder="Search icons..."
             class="search-input"
         />
 
         <div class="customization">
           <div class="control-group">
-            <label>Tamanho</label>
+            <label>Size</label>
             <input
                 v-model="iconSize"
                 type="range"
@@ -63,7 +64,7 @@ const copyIconName = (name: string) => {
           </div>
 
           <div class="control-group">
-            <label>Espessura</label>
+            <label>Stroke</label>
             <input
                 v-model="strokeWidth"
                 type="range"
@@ -120,7 +121,7 @@ const copyIconName = (name: string) => {
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, #00DC82 0%, #36E4A8 100%);
   -webkit-background-clip: text;
