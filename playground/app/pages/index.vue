@@ -1,5 +1,5 @@
 <script setup>
-const menuItems = ref([
+const menuItems = ([
   {
     icon: resolveComponent('HomeIcon'),
   },
@@ -21,5 +21,7 @@ const menuItems = ref([
         <component :is="item.icon" size="2.5x"/>
       </li>
     </ul>
+
+    <FeatherIcon name="HomeIcon" size="2.5x" class="text"/>
   </div>
 </template>
