@@ -29,10 +29,10 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-feather-icons'
   ],
-    nuxtFeatherIcons: {
-        // optional prefix for icons
-        prefix: 'Fi'
-    }
+  nuxtFeatherIcons: {
+    // optional prefix for icons
+    prefix: 'Fi'
+  }
 })
 ```
 Feather Icons are automatically registered as components. You can use any icon like `<HomeIcon />`.
