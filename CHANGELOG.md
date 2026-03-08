@@ -1,4 +1,17 @@
 
+## v1.3.1
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.0...v1.3.1)
+
+### 🏡 Chore
+
+- **nuxt-feather-icons:** Add --no-git-checks flag to pnpm publish command ([b085a69](https://github.com/4sllan/nuxt-feather-icons/commit/b085a69))
+- **nuxt-feather-icons:** Move feather-icons to dependencies - Move feather-icons from devDependencies to dependencies ([0ecf89a](https://github.com/4sllan/nuxt-feather-icons/commit/0ecf89a))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.0
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.0.3...v1.3.0)
