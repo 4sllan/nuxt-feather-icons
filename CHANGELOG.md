@@ -1,4 +1,17 @@
 
+## v1.3.2
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.1...v1.3.2)
+
+### 🏡 Chore
+
+- **nuxt-feather-icons:** Bump version to 1.3.1 ([fe1c373](https://github.com/4sllan/nuxt-feather-icons/commit/fe1c373))
+- **nuxt-feather-icons:** Update Nuxt compatibility constraints ([2aebf39](https://github.com/4sllan/nuxt-feather-icons/commit/2aebf39))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.1
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.0...v1.3.1)
