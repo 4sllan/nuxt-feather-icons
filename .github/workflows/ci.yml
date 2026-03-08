@@ -15,18 +15,18 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x] # Ajuste conforme a sua versão Node
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
           cache: "pnpm"
 
       - name: Install dependencies
