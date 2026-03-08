@@ -45,13 +45,13 @@ const copyIconName = (name: string) => {
         <input
             v-model="searchQuery"
             type="text"
-            placeholder="Buscar ícones..."
+            placeholder="Search icons..."
             class="search-input"
         />
 
         <div class="customization">
           <div class="control-group">
-            <label>Tamanho</label>
+            <label>Size</label>
             <input
                 v-model="iconSize"
                 type="range"
@@ -64,7 +64,7 @@ const copyIconName = (name: string) => {
           </div>
 
           <div class="control-group">
-            <label>Espessura</label>
+            <label>Stroke</label>
             <input
                 v-model="strokeWidth"
                 type="range"
