@@ -2,7 +2,7 @@
 <img src=".github/nuxt-feather-icons.svg" width="200">
 </div>
 <h1 align="center">Nuxt Feather Icons</h1>
-<p align="center">Support for Nuxt</p>
+<p align="center">Feather Icons support for Nuxt with easy usage and dynamic components.</p>
 <br>
 
 
@@ -14,74 +14,86 @@
 
 ## Install
 
+Add the module to your Nuxt project:
+
 ```bash
 npx nuxi@latest module add nuxt-feather-icons
 ```
 
-## Usage
+## Setup
 
-### nuxt.config.js
+Add the module to `nuxt.config.js`:
 
-``` js
-modules: [
+```typescript jsx
+export default defineNuxtConfig({
+  modules: [
     'nuxt-feather-icons'
-],
+  ],
+})
 ```
+Feather Icons are automatically registered as components. You can use any icon like `<HomeIcon />`.
 
-## Sizing
+## Basic Usage
 
-<p>Icons are automatically sized based on the font size of the parent element by default.</p>
-<p>However, if you wish to customize the size, you can use the size attribute. For sizing based on multiples, specify the
-desired multiple followed by an x.</p>
-
-```html
-
-<XIcon size="1.5x" class="custom-class"></XIcon>
+```vue
+<template>
+    <div>
+        <HomeIcon size="2x" />
+        <UsersIcon size="40" class="text-blue-500" />
+    </div>
+</template>
 ```
+- `size="2x"` → multiples of the parent font-size
+- `size="40"` → absolute pixels
+- `class` → custom CSS classes
 
-<p>Additionally, you can set an absolute size in pixels (px) by simply passing an integer.</p>
+## Dynamic Icons
 
-```html
+```vue
+<script setup lang="ts">
+    import { shallowRef, resolveComponent } from 'vue'
 
-<XIcon size="30" class="custom-class"></XIcon>
-```
-
-<p>This flexibility allows you to easily adjust the icon size according to your specific needs.</p>
-
-```html
-<script setup>
-const menuItems = ref([
-  {
-    icon: resolveComponent('HomeIcon'),
-  },
-  {
-    icon: resolveComponent('UsersIcon'),
-  },
-  {
-    icon: resolveComponent('LayersIcon'),
-  },
-])
+    // Menu items com componentes resolvidos
+    const menuItems = shallowRef([
+        { icon: resolveComponent('HomeIcon') },
+        { icon: resolveComponent('UsersIcon') },
+        { icon: resolveComponent('LayersIcon') },
+    ])
 </script>
 
 <template>
-  <ul>
-    <li v-for="(item, index) in menuItems" :key="index">
-      <component :is="item.icon" size="2x"/>
-    </li>
-  </ul>
+    <ul>
+        <li v-for="(item, index) in menuItems" :key="index">
+            <component :is="item.icon" size="2x" class="mr-2"/>
+            {{ item.icon.name }}
+        </li>
+    </ul>
 </template>
-
 ```
+- Use resolveComponent to dynamically load icons
+- Perfect for menus, toolbars, or any dynamic lists
 
-<p>Use the resolveComponent function to dynamically load icon components. In the template, leverage the <component> tag and specify the corresponding icon using the :is property.</p>
-<p>This approach simplifies the creation of dynamic and reusable icon lists, making it ideal for menus or other components requiring flexibility with multiple icons.</p>
+## Props
 
+| Prop    | Type               | Default | Description                             |
+|---------|--------------------|---------|-----------------------------------------|
+| `size`  | `String \| Number` | `'1x'`  | Sets the icon size (e.g., `2x` or `30`) |
+| `class` | `String`           | `''`    | Custom CSS classes                      |
 
+## Custom Styling
+
+- Combine with Tailwind, Windi, or any utility CSS
+- Icons inherit parent font size by default
+- Example with Tailwind:
+
+```vue
+<XIcon size="3x" class="text-red-500 hover:text-green-500 transition-colors" />
+```
 
 
 ## ⚖️ License
 
-Released under [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
+Released under the [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
 
 
 [npm-v-src]: https://img.shields.io/npm/v/nuxt-feather-icons/latest.svg?style=flat-square&colorA=18181B&colorB=28CF8D
