@@ -59,13 +59,6 @@ export default defineNuxtModule<ModuleOptions>({
             })
         }
 
-        addComponent({
-            name: 'FeatherIcon',
-            filePath: resolve('./runtime/components/FeatherIcon.vue'),
-            priority: 10,
-            mode: 'client'
-        })
-
         addTypeTemplate({
             filename: 'types/nuxt-feather-icons.d.ts',
             getContents: () => generateIconsTypes(icons, options)
