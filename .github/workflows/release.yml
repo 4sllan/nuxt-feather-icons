@@ -68,20 +68,29 @@ jobs:
         id: changelog
         run: |
           VERSION="${{ github.ref_name }}"
-          VERSION="${VERSION#v}"
-
-          awk "/^## \[$VERSION\]/{flag=1;next}/^## \[/{flag=0}flag" CHANGELOG.md > temp_changelog.md
-
-          # ❌ Fail if version section not found
+          VERSION_NUMBER="${VERSION#v}"
+          
+          awk -v ver="$VERSION_NUMBER" '
+            /^## / {
+              heading = $0
+              sub(/^##[ ]*/, "", heading)   # Remove ##
+              sub(/^\[/, "", heading)       # Remove [
+              sub(/\]$/, "", heading)       # Remove ]
+              sub(/^v/, "", heading)        # Remove v
+              flag = (heading == ver)
+              next
+            }
+            flag
+          ' CHANGELOG.md > temp_changelog.md
+          
           if [ ! -s temp_changelog.md ]; then
             echo "❌ No changelog section found for version ${VERSION} in CHANGELOG.md"
             exit 1
           fi
-
+          
           echo "BODY<<EOF" >> $GITHUB_ENV
           cat temp_changelog.md >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
       # 🚀 Publish to npm
       - name: 🚀 Publish to npm
         run: pnpm publish --provenance --access public
