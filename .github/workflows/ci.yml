@@ -1,46 +1,39 @@
-name: 🧪 CI Develop
+name: CI
 
 on:
   push:
     branches:
+      - main
       - develop
   pull_request:
     branches:
+      - main
       - develop
-      - release
 
 jobs:
-  unit:
-    name: 🧩 Unit + Lint + Typecheck
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [20.x] # Ajuste conforme a sua versão Node
+
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Ensure pnpm is available
-        run: corepack prepare pnpm@latest --activate
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
-      - name: 🔧 Preparar ambiente Nuxt
-        run: npx nuxi prepare
+      - name: Build Nuxt
+        run: pnpm build
 
-      - name: 🔧 Preparar ambiente do Playground
-        run: cd playground && npx nuxi prepare
-
-      - name: 🚀 Iniciar Nuxt no Playground
-        run: cd playground && pnpm dev &  # Roda em segundo plano
-
-      - name: ⏳ Aguardar o servidor estar pronto
-        run: sleep 10  # Ajuste o tempo conforme necessário
-
-      - name: Run Unit Tests
+      - name: Run Vitest
         run: pnpm test
