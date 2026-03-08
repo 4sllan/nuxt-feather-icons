@@ -1,7 +1,7 @@
 
-## v1.4.0
+## v1.3.6
 
-[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.5...v1.4.0)
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.5...v1.3.6)
 
 ### 🚀 Enhancements
 
