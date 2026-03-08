@@ -19,7 +19,7 @@ function pascalCase(str: string) {
 }
 
 const templateComponent = (attrs: FeatherAttrs, innerHTML: string) => `
-import { h } from 'vue'
+import { h, computed } from 'vue'
 
 export default {
   name: 'FeatherIcon',
@@ -34,20 +34,19 @@ export default {
     }
   },
   setup(props) {
-    const size =
+    const size = computed(() => 
       typeof props.size === 'string' && props.size.endsWith('x')
         ? props.size.slice(0, -1) + 'em'
-        : parseInt(props.size) + 'px'
+        : props.size + 'px'
+    )
 
-    const svgAttrs = {
+    return () => h('svg', {
       ...${JSON.stringify(attrs)},
-      width: size,
-      height: size,
-      class: ${JSON.stringify(attrs.class || '')} + ' ' + props.class,
-      innerHTML: ${JSON.stringify(innerHTML)}
-    }
-
-    return () => h('svg', svgAttrs)
+      width: size.value,
+      height: size.value,
+      class: '${attrs.class || ''}' + ' ' + props.class,
+      innerHTML: \`${innerHTML}\`
+    })
   }
 }
 `.trim()
