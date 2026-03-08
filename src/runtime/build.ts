@@ -1,89 +1,102 @@
-import path from 'path'
-// @ts-ignore
 import feather from 'feather-icons'
-// @ts-ignore
-import fs from 'fs-extra'
-// @ts-ignore
-import pascalcase from 'pascalcase';
-
-import {createResolver} from '@nuxt/kit'
-
-const {resolve} = createResolver(import.meta.url)
+import * as fs from 'node:fs/promises'
+import * as path from 'node:path'
+import type { Nuxt } from '@nuxt/schema'
 
 type ModuleIconsNames = {
-    name: string
     componentName: string
     componentPascalName: string
 }
 
-type ModuleFeatherIconsAttrs = {
-    xmlns: string
-    width: number
-    height: number
-    viewBox: string,
-    fill?: string,
-    stroke?: string,
-    'stroke-width'?: number,
-    'stroke-linecap'?: string,
-    'stroke-linejoin'?: string,
-    class: string
-    innerHTML: string
+type FeatherAttrs = {
+    [key: string]: string | number
 }
 
-const templateComponent = (name: string, el: string): string => `
-import { h } from 'vue'
+let cache: ModuleIconsNames[] | null = null
 
-    export default {
-        props: {
-            size: {
-                type: String,
-                default: '24',
-                validator: (s) => (!isNaN(s) || s.length >= 2 && !isNaN(s.slice(0, s.length - 1)) && s.slice(-1) === 'x')
-            }, 
-            class: {
-                type: String,
-            }
-        },
-        setup(props, {slots}) {
+function pascalCase(str: string) {
+    return str.replace(/(^\w|-\w)/g, s => s.replace('-', '').toUpperCase())
+}
 
-            const size = props.size.slice(-1) === 'x'
-                ? props.size.slice(0, props.size.length - 1) + 'em'
-                : parseInt(props.size) + 'px';
+const templateComponent = (attrs: FeatherAttrs, innerHTML: string) => `
+import { h, computed } from 'vue'
 
-            const attrs = ${el}
-            attrs.width = size
-            attrs.height = size
-            attrs.class = attrs.class+' '+props.class
-                       
-            return () => [
-                h('svg', attrs)
-            ]
-        }
+export default {
+  name: 'FeatherIcon',
+  props: {
+    size: {
+      type: [String, Number],
+      default: 24
+    },
+    class: {
+      type: String,
+      default: ''
     }
+  },
+  setup(props) {
+    const size = computed(() => 
+      typeof props.size === 'string' && props.size.endsWith('x')
+        ? props.size.slice(0, -1) + 'em'
+        : props.size + 'px'
+    )
+
+    return () => h('svg', {
+      ...${JSON.stringify(attrs)},
+      width: size.value,
+      height: size.value,
+      class: '${attrs.class || ''}' + ' ' + props.class,
+      innerHTML: \`${innerHTML}\`
+    })
+  }
+}
 `.trim()
 
-const icons: ModuleIconsNames[] = Object.keys(feather.icons).map(name => ({
-    name,
-    componentName: `${name}-icon`,
-    componentPascalName: pascalcase(`${name}-icon`)
-}))
-
-const build = Promise.all(icons.map(icon => {
-    const content: string = feather.icons[icon.name].contents;
-    const el: ModuleFeatherIconsAttrs = feather.icons[icon.name].attrs;
-    el.innerHTML = content;
-    const component: string = templateComponent(icon.name, JSON.stringify(el))
-    const filepath: string = resolve(`./runtime/components/${icon.componentPascalName}.js`)
-
-    fs.ensureDir(path.dirname(filepath))
-        .then(() => fs.writeFile(filepath, component, 'utf8'))
-
-    return {
-        componentPascalName: icon.componentPascalName,
-        componentName: icon.componentName
+export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
+    if (cache) {
+        return cache
     }
-}))
-export default build;
 
+    const icons = Object.keys(feather.icons).map((name) => ({
+        name,
+        componentName: `${name}-icon`,
+        componentPascalName: pascalCase(`${name}-icon`)
+    }))
 
+    const componentsDir = path.join(
+        nuxt.options.buildDir,
+        'feather-icons'
+    )
 
+    await fs.mkdir(componentsDir, { recursive: true })
+
+    const result = await Promise.all(
+        icons.map(async (icon) => {
+            const iconData = feather.icons[icon.name]
+
+            if (!iconData) {
+                throw new Error(`Icon "${icon.name}" not found in feather-icons`)
+            }
+
+            const component = templateComponent(
+                iconData.attrs,
+                iconData.contents
+            )
+
+            const filepath = path.join(
+                componentsDir,
+                `${icon.componentPascalName}.js`
+            )
+
+            await fs.writeFile(filepath, component, 'utf8')
+
+            return {
+                componentName: icon.componentName,
+                componentPascalName: icon.componentPascalName
+            }
+        })
+    )
+
+    cache = result
+
+    return result
+}
