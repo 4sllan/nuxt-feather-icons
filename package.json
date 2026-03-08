@@ -47,11 +47,18 @@
     "@nuxt/module-builder": "^1.0.2",
     "@nuxt/schema": "^4.3.1",
     "@types/node": "^25.3.5",
+    "@vue/test-utils": "^2.4.6",
     "eslint": "^10.0.3",
     "feather-icons": "^4.29.2",
+    "jsdom": "^28.1.0",
     "nuxt": "^4.3.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18",
     "vue-tsc": "^3.2.5"
+  },
+  "vitest": {
+    "globals": true,
+    "environment": "jsdom",
+    "include": ["tests/**/*.test.ts"]
   }
 }
