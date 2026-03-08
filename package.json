@@ -48,6 +48,7 @@
     "@nuxt/schema": "^4.3.1",
     "@types/node": "^25.3.5",
     "@vue/test-utils": "^2.4.6",
+    "changelogen": "^0.6.2",
     "eslint": "^10.0.3",
     "feather-icons": "^4.29.2",
     "jsdom": "^28.1.0",
