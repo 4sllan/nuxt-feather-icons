@@ -1,4 +1,26 @@
 
+## v1.3.2
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.1...v1.3.2)
+
+### 🩹 Fixes
+
+- **nuxt-feather-icons:** Fix missing quote in usage example ([fd3acc5](https://github.com/4sllan/nuxt-feather-icons/commit/fd3acc5))
+
+### 📖 Documentation
+
+- **nuxt-feather-icons:** Update README setup instructions and configuration example ([ccfc13e](https://github.com/4sllan/nuxt-feather-icons/commit/ccfc13e))
+- **nuxt-feather-icons:** Update code block language to HTML ([6a15ef4](https://github.com/4sllan/nuxt-feather-icons/commit/6a15ef4))
+- **nuxt-feather-icons:** Update usage example with shallowRef and styling ([8af961c](https://github.com/4sllan/nuxt-feather-icons/commit/8af961c))
+
+### 🏡 Chore
+
+- **nuxt-feather-icons:** Bump version to 1.3.1 ([fe1c373](https://github.com/4sllan/nuxt-feather-icons/commit/fe1c373))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.1
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.0...v1.3.1)
