@@ -44,7 +44,9 @@ jobs:
       # 🔎 Verify tag version matches package.json
       - name: 🔎 Validate version
         run: |
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          # Extrai apenas o nome da tag (remove refs/tags/)
+          TAG_FULL="${GITHUB_REF_NAME#refs/tags/}"  # v1.3.0
+          TAG_VERSION="${TAG_FULL#v}"               # 1.3.0
           PACKAGE_VERSION=$(node -p "require('./package.json').version")
           
           echo "Tag version: $TAG_VERSION"
@@ -67,7 +69,7 @@ jobs:
       - name: 📄 Extract current version changelog
         id: changelog
         run: |
-          VERSION="${{ github.ref_name }}"
+          VERSION="${GITHUB_REF_NAME#refs/tags/}"
           VERSION_NUMBER="${VERSION#v}"
           
           awk -v ver="$VERSION_NUMBER" '
@@ -91,6 +93,7 @@ jobs:
           echo "BODY<<EOF" >> $GITHUB_ENV
           cat temp_changelog.md >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
       # 🚀 Publish to npm
       - name: 🚀 Publish to npm
         run: pnpm publish --provenance --access public
