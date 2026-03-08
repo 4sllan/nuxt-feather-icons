@@ -33,6 +33,16 @@ export default defineNuxtConfig({
 ```
 Feather Icons are automatically registered as components. You can use any icon like `<HomeIcon />`.
 
+```typescript
+export default defineNuxtConfig({
+    nuxtFeatherIcons: {
+        // optional prefix for icons
+        prefix: 'Fi'
+    }
+})
+ 
+```
+
 ## Basic Usage
 
 ```vue
