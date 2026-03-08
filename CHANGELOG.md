@@ -1,4 +1,16 @@
 
+## v1.3.5
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.4...v1.3.5)
+
+### 🏡 Chore
+
+- **nuxt-feather-icons:** Update Nuxt minimum version requirement ([fb77678](https://github.com/4sllan/nuxt-feather-icons/commit/fb77678))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.4
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.2...v1.3.4)
