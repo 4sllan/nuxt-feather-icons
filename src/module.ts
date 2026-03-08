@@ -3,10 +3,11 @@ import {
     createResolver,
     defineNuxtModule,
     addTypeTemplate,
-    addComponentsDir
+    addComponent
 } from '@nuxt/kit'
+import { join } from 'node:path'
 
-import build from './runtime/build'
+import { buildIcons } from './runtime/build'
 import { generateIconsTypes } from './types/generate-icons-types'
 
 const PACKAGE_NAME = 'nuxt-feather-icons'
@@ -43,18 +44,36 @@ export default defineNuxtModule<ModuleOptions>({
 
         logger.info('Generating Feather icons components...')
 
-        const icons: ModuleIconsNames[] = await build
+        const icons = await buildIcons(nuxt)
 
-        addComponentsDir({
-            path: resolve('runtime/components'),
-            pathPrefix: false,
-            global: false
+        const componentsDir = join(nuxt.options.buildDir, 'feather-icons')
+
+        for (const icon of icons) {
+            const componentName = `${options.prefix}${icon.componentPascalName}`
+
+            addComponent({
+                name: componentName,
+                export: 'default',
+                filePath: join(componentsDir, `${icon.componentPascalName}.js`),
+                chunkName: `feather-${componentName}`,
+            })
+        }
+
+        addComponent({
+            name: 'FeatherIcon',
+            filePath: resolve('./runtime/components/FeatherIcon.vue'),
+            priority: 10,
+            mode: 'client'
         })
 
         addTypeTemplate({
             filename: 'types/nuxt-feather-icons.d.ts',
             getContents: () => generateIconsTypes(icons, options)
         })
+
+        nuxt.options.runtimeConfig.public.featherIcons = {
+            prefix: options.prefix || ''
+        }
 
         nuxt.hook('prepare:types', ({ references }) => {
             references.push({ path: 'types/nuxt-feather-icons.d.ts' })

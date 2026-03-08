@@ -1,9 +1,7 @@
 import feather from 'feather-icons'
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
-import { createResolver } from '@nuxt/kit'
-
-const { resolve } = createResolver(import.meta.url)
+import type { Nuxt } from '@nuxt/schema'
 
 type ModuleIconsNames = {
     componentName: string
@@ -13,6 +11,8 @@ type ModuleIconsNames = {
 type FeatherAttrs = {
     [key: string]: string | number
 }
+
+let cache: ModuleIconsNames[] | null = null
 
 function pascalCase(str: string) {
     return str.replace(/(^\w|-\w)/g, s => s.replace('-', '').toUpperCase())
@@ -52,32 +52,25 @@ export default {
 }
 `.trim()
 
-const icons = Object.keys(feather.icons).map((name) => ({
-    name,
-    componentName: `${name}-icon`,
-    componentPascalName: pascalCase(`${name}-icon`)
-}))
-
-async function writeIfChanged(file: string, content: string) {
-    try {
-        const existing = await fs.readFile(file, 'utf8')
-
-        if (existing === content) {
-            return
-        }
-    } catch {
-        // arquivo não existe
+export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
+    if (cache) {
+        return cache
     }
 
-    await fs.writeFile(file, content, 'utf8')
-}
+    const icons = Object.keys(feather.icons).map((name) => ({
+        name,
+        componentName: `${name}-icon`,
+        componentPascalName: pascalCase(`${name}-icon`)
+    }))
 
-async function buildIcons(): Promise<ModuleIconsNames[]> {
-    const componentsDir = resolve('./components')
+    const componentsDir = path.join(
+        nuxt.options.buildDir,
+        'feather-icons'
+    )
 
     await fs.mkdir(componentsDir, { recursive: true })
 
-    return Promise.all(
+    const result = await Promise.all(
         icons.map(async (icon) => {
             const iconData = feather.icons[icon.name]
 
@@ -85,17 +78,17 @@ async function buildIcons(): Promise<ModuleIconsNames[]> {
                 throw new Error(`Icon "${icon.name}" not found in feather-icons`)
             }
 
-            const attrs = { ...iconData.attrs }
-            const innerHTML = iconData.contents
-
-            const component = templateComponent(attrs, innerHTML)
+            const component = templateComponent(
+                iconData.attrs,
+                iconData.contents
+            )
 
             const filepath = path.join(
                 componentsDir,
                 `${icon.componentPascalName}.js`
             )
 
-            await writeIfChanged(filepath, component)
+            await fs.writeFile(filepath, component, 'utf8')
 
             return {
                 componentName: icon.componentName,
@@ -103,6 +96,8 @@ async function buildIcons(): Promise<ModuleIconsNames[]> {
             }
         })
     )
-}
 
-export default buildIcons()
+    cache = result
+
+    return result
+}
