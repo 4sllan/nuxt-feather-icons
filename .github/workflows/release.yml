@@ -1,0 +1,101 @@
+name: 🚀 Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Trigger only on version tags like v1.0.0
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write  # necessário para --provenance
+
+    steps:
+      # 📥 Checkout repository
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 📦 Enable pnpm
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      # 🟢 Setup Node.js
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org/' # Importante!
+
+      # 📦 Install dependencies
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 🏗 Build package
+      - name: 🏗 Build package
+        run: pnpm build
+
+      # 🔎 Verify tag version matches package.json
+      - name: 🔎 Validate version
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          
+          echo "Tag version: $TAG_VERSION"
+          echo "Package version: $PACKAGE_VERSION"
+          
+          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "❌ Tag version does not match package.json version"
+            exit 1
+          fi   
+
+      # ✅ Verify CHANGELOG exists
+      - name: ✅ Verify CHANGELOG.md
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            echo "❌ CHANGELOG.md not found!"
+            exit 1
+          fi
+
+      # 📄 Extract current version changelog
+      - name: 📄 Extract current version changelog
+        id: changelog
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+
+          awk "/^## \[$VERSION\]/{flag=1;next}/^## \[/{flag=0}flag" CHANGELOG.md > temp_changelog.md
+
+          # ❌ Fail if version section not found
+          if [ ! -s temp_changelog.md ]; then
+            echo "❌ No changelog section found for version ${VERSION} in CHANGELOG.md"
+            exit 1
+          fi
+
+          echo "BODY<<EOF" >> $GITHUB_ENV
+          cat temp_changelog.md >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      # 🚀 Publish to npm
+      - name: 🚀 Publish to npm
+        run: pnpm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # 🚀 Create GitHub Release
+      - name: 🚀 Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: 🚀 Release ${{ github.ref_name }}
+          body: ${{ env.BODY }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

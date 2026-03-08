@@ -2,11 +2,22 @@ import {
     useLogger,
     createResolver,
     defineNuxtModule,
+    addTypeTemplate,
     addComponent
 } from '@nuxt/kit'
+import { join } from 'node:path'
 
-interface ModuleOptions {
+import { buildIcons } from './runtime/build'
+import { generateIconsTypes } from './types/generate-icons-types'
 
+const PACKAGE_NAME = 'nuxt-feather-icons'
+
+export interface ModuleOptions {
+    /**
+     * Optional prefix for icons
+     * Example: FiHomeIcon
+     */
+    prefix?: string
 }
 
 interface ModuleIconsNames {
@@ -14,39 +25,60 @@ interface ModuleIconsNames {
     componentPascalName: string
 }
 
-import build from "./runtime/build";
-
-const PACKAGE_NAME: string = 'nuxt-feather-icons'
-
 export default defineNuxtModule<ModuleOptions>({
-
     meta: {
         name: PACKAGE_NAME,
-        // The key in `nuxt.config` that holds your module options
         configKey: 'nuxtFeatherIcons',
-        // Compatibility constraints
         compatibility: {
-            // Semver version of supported nuxt versions
-            nuxt: '>=3.0.0'
+            nuxt: '^3.0.0 || ^4.0.0'
         }
     },
 
-    setup(moduleOptions, nuxt) {
+    defaults: {
+        prefix: ''
+    },
+
+    async setup(options, nuxt) {
         const logger = useLogger(PACKAGE_NAME)
+        const { resolve } = createResolver(import.meta.url)
 
-        const {resolve} = createResolver(import.meta.url)
+        logger.info('Generating Feather icons components...')
 
-        build.then((icons: ModuleIconsNames[]): void => {
-            icons.forEach(j => {
-                addComponent({
-                    name: j.componentName,
-                    filePath: resolve(`./runtime/components/${j.componentPascalName}.js`),
-                    pascalName: j.componentPascalName,
-                    global: false,
-                    mode: 'all',
-                })
+        const icons = await buildIcons(nuxt)
+
+        const componentsDir = join(nuxt.options.buildDir, 'feather-icons')
+
+        for (const icon of icons) {
+            const componentName = `${options.prefix}${icon.componentPascalName}`
+
+            addComponent({
+                name: componentName,
+                export: 'default',
+                filePath: join(componentsDir, `${icon.componentPascalName}.js`),
+                chunkName: `feather-${componentName}`,
             })
+        }
+
+        addComponent({
+            name: 'FeatherIcon',
+            filePath: resolve('./runtime/components/FeatherIcon.vue'),
+            priority: 10,
+            mode: 'client'
         })
 
+        addTypeTemplate({
+            filename: 'types/nuxt-feather-icons.d.ts',
+            getContents: () => generateIconsTypes(icons, options)
+        })
+
+        nuxt.options.runtimeConfig.public.featherIcons = {
+            prefix: options.prefix || ''
+        }
+
+        nuxt.hook('prepare:types', ({ references }) => {
+            references.push({ path: 'types/nuxt-feather-icons.d.ts' })
+        })
+
+        logger.success(`${icons.length} Feather icons registered`)
     }
 })
