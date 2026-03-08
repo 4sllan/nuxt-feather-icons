@@ -21,7 +21,7 @@ const showToast = ref(false)
 const copiedIconName = ref('')
 
 const filteredIcons = computed(() => {
-  if (!searchQuery.value) return icons
+  if (!searchQuery.value) {return icons}
   const query = searchQuery.value.toLowerCase()
   return icons.filter(icon => icon.name.toLowerCase().includes(query))
 })
