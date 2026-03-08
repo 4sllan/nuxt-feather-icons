@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      feather-icons:
+        specifier: ^4.29.2
+        version: 4.29.2
     devDependencies:
       '@nuxt/eslint-config':
         specifier: ^1.15.2
@@ -32,9 +36,6 @@ importers:
       eslint:
         specifier: ^10.0.3
         version: 10.0.3(jiti@2.6.1)
-      feather-icons:
-        specifier: ^4.29.2
-        version: 4.29.2
       jsdom:
         specifier: ^28.1.0
         version: 28.1.0
