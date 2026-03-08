@@ -1,3 +1,29 @@
 {
-  "extends": "./.nuxt/tsconfig.json"
+  "files": [],
+  "references": [
+    {
+      "path": "./.nuxt/tsconfig.app.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.server.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.shared.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.node.json"
+    }
+  ],
+  "include": [
+    "module.ts",
+    "runtime/**/*.ts",
+    "types/**/*.d.ts"
+  ],
+
+  "exclude": [
+    "dist",
+    "node_modules",
+    ".nuxt",
+    "playground"
+  ]
 }

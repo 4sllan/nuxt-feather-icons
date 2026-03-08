@@ -1,5 +1,5 @@
 <script setup>
-const menuItems = ref([
+const menuItems = ([
   {
     icon: resolveComponent('HomeIcon'),
   },
@@ -14,12 +14,14 @@ const menuItems = ref([
 
 <template>
   <div>
-    <XIcon size="30" class="custom-class"></XIcon>
+    <XIcon size="30" class="custom-class"/>
 
     <ul>
       <li v-for="(item, index) in menuItems" :key="index">
         <component :is="item.icon" size="2.5x"/>
       </li>
     </ul>
+
+    <FeatherIcon name="HomeIcon" size="2.5x" class="text"/>
   </div>
 </template>

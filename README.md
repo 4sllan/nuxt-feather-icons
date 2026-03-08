@@ -2,7 +2,7 @@
 <img src=".github/nuxt-feather-icons.svg" width="200">
 </div>
 <h1 align="center">Nuxt Feather Icons</h1>
-<p align="center">Support for Nuxt 3</p>
+<p align="center">Support for Nuxt</p>
 <br>
 
 
