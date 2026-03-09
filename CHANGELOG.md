@@ -1,4 +1,16 @@
 
+## v1.3.9
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.8...v1.3.9)
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Update component path resolution logic ([b574605](https://github.com/4sllan/nuxt-feather-icons/commit/b574605))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.8
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.7...v1.3.8)
