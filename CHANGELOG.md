@@ -1,4 +1,16 @@
 
+## v1.3.7
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.6...v1.3.7)
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Simplify component path resolution - Remove unused `resolve` variable and `createResolver` import - Remove `componentsDir` variable definition - Use inline template literal for file path instead of `join` function ([5fdaa45](https://github.com/4sllan/nuxt-feather-icons/commit/5fdaa45))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.6
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.5...v1.3.6)
