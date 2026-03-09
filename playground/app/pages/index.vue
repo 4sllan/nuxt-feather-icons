@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 
 // Importa todos os arquivos do build de icons (eager)
-const modules = import.meta.glob('#build/feather-icons/*.js', { eager: true })
+const modules = import.meta.glob('../../../src/runtime/components/*.js', { eager: true })
 
 // Pega os nomes dos arquivos e os componentes default
 const icons = Object.entries(modules).map(([path, mod]) => {

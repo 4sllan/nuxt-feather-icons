@@ -6,8 +6,6 @@ import {
     addComponentsDir
 } from '@nuxt/kit'
 
-import { join } from 'node:path'
-
 import { buildIcons } from './runtime/build'
 import { generateIconsTypes } from './types/generate-icons-types'
 
@@ -26,7 +24,7 @@ export default defineNuxtModule<ModuleOptions>({
         name: PACKAGE_NAME,
         configKey: 'nuxtFeatherIcons',
         compatibility: {
-            nuxt: '>=3.0.0'
+            nuxt: '>=3.0.0',
         }
     },
 
@@ -36,20 +34,21 @@ export default defineNuxtModule<ModuleOptions>({
 
     async setup(options, nuxt) {
         const logger = useLogger(PACKAGE_NAME)
-        const { resolve } = createResolver(import.meta.url)
+        const resolver = createResolver(import.meta.url)
 
         logger.info('Generating Feather icons components...')
 
         const icons = await buildIcons(nuxt)
 
-        const componentsDir = join(nuxt.options.buildDir, 'feather-icons')
+        const componentsDir = resolver.resolve('./runtime/components')
 
         addComponentsDir({
             path: componentsDir,
+            prefix: options.prefix,
             pathPrefix: false,
-            extensions: ['js'],
-            prefix: options.prefix
-        })
+            extensions: ["js"],
+            transpile: true,
+        });
 
         addTypeTemplate({
             filename: 'types/nuxt-feather-icons.d.ts',
