@@ -110,7 +110,7 @@ Released under the [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 
-[nuxt-href]: https://nuxt.com/
+[nuxt-href]: https://nuxt.com/modules/nuxt-feather-icons
 
 [npm-d-src]: https://img.shields.io/npm/dt/nuxt-feather-icons.svg?style=flat-square&colorA=18181B&colorB=28CF8D
 
