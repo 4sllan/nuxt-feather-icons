@@ -1,4 +1,16 @@
 
+## v1.3.8
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.7...v1.3.8)
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Use addComponentsDir for icon registration ([603ed25](https://github.com/4sllan/nuxt-feather-icons/commit/603ed25))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.7
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.6...v1.3.7)
