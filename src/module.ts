@@ -3,12 +3,13 @@ import {
     createResolver,
     defineNuxtModule,
     addTypeTemplate,
-    addComponent
+    addTemplate,
+    addComponentsDir,
+    addImports
 } from '@nuxt/kit'
-import { join } from 'node:path'
 
-import { buildIcons } from './runtime/build'
-import { generateIconsTypes } from './types/generate-icons-types'
+import {buildIcons} from './runtime/build'
+import {generateIconsTypes} from './types/generate-icons-types'
 
 const PACKAGE_NAME = 'nuxt-feather-icons'
 
@@ -18,11 +19,6 @@ export interface ModuleOptions {
      * Example: FiHomeIcon
      */
     prefix?: string
-}
-
-interface ModuleIconsNames {
-    componentName: string
-    componentPascalName: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -40,36 +36,74 @@ export default defineNuxtModule<ModuleOptions>({
 
     async setup(options, nuxt) {
         const logger = useLogger(PACKAGE_NAME)
-        const { resolve } = createResolver(import.meta.url)
+        const resolver = createResolver(import.meta.url)
 
         logger.info('Generating Feather icons components...')
 
         const icons = await buildIcons(nuxt)
 
-        const componentsDir = join(nuxt.options.buildDir, 'feather-icons')
+        const componentsDir = resolver.resolve('./runtime/components')
 
-        for (const icon of icons) {
-            const componentName = `${options.prefix}${icon.componentPascalName}`
+        addComponentsDir({
+            path: componentsDir,
+            prefix: options.prefix,
+            pathPrefix: false,
+            extensions: ["js"],
+            transpile: true,
+        });
 
-            addComponent({
-                name: componentName,
-                export: 'default',
-                filePath: join(componentsDir, `${icon.componentPascalName}.js`),
-                chunkName: `feather-${componentName}`,
-            })
-        }
+        const template = addTemplate({
+            filename: 'nuxt-feather-icons-map.mjs',
+            getContents: () => {
+                // Usamos o resolver para garantir caminhos que o Vite entenda
+                return icons.map(icon => {
+                    const importPath = resolver.resolve('./runtime/components', `${icon.componentPascalName}.js`)
+                    return `export { default as ${icon.componentPascalName} } from '${importPath}'`
+                }).join('\n')
+            },
+            write: true
+        })
 
         addTypeTemplate({
             filename: 'types/nuxt-feather-icons.d.ts',
             getContents: () => generateIconsTypes(icons, options)
         })
 
+        addTypeTemplate({
+            filename: 'types/nuxt-feather-icons-map.d.ts',
+            getContents: () => `
+                declare module '#feather-icons-map' {
+                  import type { Component } from 'vue'
+                  ${icons.map(icon => `export const ${icon.componentPascalName}: Component`).join('\n')}
+                }
+              `
+        })
+
+        // Opcional: Auto-importar o composable que vamos criar
+        addImports({
+            name: 'useFeatherIcon',
+            as: 'useFeatherIcon',
+            from: resolver.resolve('./runtime/composables/useFeatherIcon')
+        })
+
         nuxt.options.runtimeConfig.public.featherIcons = {
             prefix: options.prefix || ''
         }
 
-        nuxt.hook('prepare:types', ({ references }) => {
-            references.push({ path: 'types/nuxt-feather-icons.d.ts' })
+        nuxt.hook('prepare:types', ({references}) => {
+            references.push({path: 'types/nuxt-feather-icons.d.ts'})
+        })
+
+        // 2. Registre o alias para o TypeScript e para o Vite
+        nuxt.options.alias['#feather-icons-map'] = template.dst
+
+        // 3. Adicione ao tsconfig através do hook
+        nuxt.hook('prepare:types', ({tsConfig}) => {
+            tsConfig.compilerOptions ||= {}
+            tsConfig.compilerOptions.paths ||= {}
+
+            // Mapeia o alias para o arquivo real no diretório .nuxt
+            tsConfig.compilerOptions.paths['#feather-icons-map'] = [template.dst]
         })
 
         logger.success(`${icons.length} Feather icons registered`)
