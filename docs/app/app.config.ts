@@ -1,9 +1,9 @@
-const siteName = 'Nuxt Umbuzeiro'
+const siteName = 'Nuxt Feather Icons'
 
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'lime',
+      primary: 'brand-green',
       neutral: 'zinc'
     },
     footer: {
@@ -20,7 +20,7 @@ export default defineAppConfig({
     title: siteName,
     to: '/',
     logo: {
-      alt: 'Nuxt Umbuzeiro - Laravel Sanctum & Laravel Passport',
+      alt: 'Nuxt Feather Icons - High-performance Feather Icons for Nuxt with full Tree-Shaking and SSR support.',
       light: 'logo.svg',
       dark: 'logo.svg'
     },
@@ -28,7 +28,7 @@ export default defineAppConfig({
     colorMode: true,
     links: [
       {
-        'icon': 'i-simple-icons-github',
+        'icon': 'GithubIcon',
         'to': 'https://github.com/4sllan/nuxt-umbu',
         'target': '_blank',
         'aria-label': 'GitHub'

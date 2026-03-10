@@ -1,3 +1,3 @@
 <script setup lang="ts">
-await navigateTo('/getting-started')
+ navigateTo('/getting-started')
 </script>
