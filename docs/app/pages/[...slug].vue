@@ -92,7 +92,15 @@ const links = computed(() => {
 
       <USeparator v-if="surround?.length" />
 
-      <UContentSurround :surround="surround" />
+      <UContentSurround :surround="surround">
+        <template #link-leading="{link}">
+          <component
+              :is="useFeatherIcon(link.icon as string)"
+              :size="17"
+              :stroke-width="2"
+          />
+        </template>
+      </UContentSurround>
     </UPageBody>
 
     <template
