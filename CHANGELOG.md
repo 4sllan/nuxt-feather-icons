@@ -1,4 +1,66 @@
 
+## v1.3.9
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.8...v1.3.9)
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Update component path resolution logic ([b574605](https://github.com/4sllan/nuxt-feather-icons/commit/b574605))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
+## v1.3.8
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.7...v1.3.8)
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Use addComponentsDir for icon registration ([603ed25](https://github.com/4sllan/nuxt-feather-icons/commit/603ed25))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
+## v1.3.7
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.6...v1.3.7)
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Simplify component path resolution - Remove unused `resolve` variable and `createResolver` import - Remove `componentsDir` variable definition - Use inline template literal for file path instead of `join` function ([5fdaa45](https://github.com/4sllan/nuxt-feather-icons/commit/5fdaa45))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
+## v1.3.6
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.5...v1.3.6)
+
+### 🚀 Enhancements
+
+- **playground:** Add dynamic icon loader and search interface ([4afde9c](https://github.com/4sllan/nuxt-feather-icons/commit/4afde9c))
+- **nuxt-feather-icons:** Add global configuration option ([b76ee07](https://github.com/4sllan/nuxt-feather-icons/commit/b76ee07))
+- **playground:** Add logo and localize header ([2835d07](https://github.com/4sllan/nuxt-feather-icons/commit/2835d07))
+
+### 📖 Documentation
+
+- **nuxt-feather-icons:** Add prefix configuration example ([aff88bf](https://github.com/4sllan/nuxt-feather-icons/commit/aff88bf))
+
+### 🏡 Chore
+
+- **nuxt-feather-icons:** Disable SSR ([ea4670d](https://github.com/4sllan/nuxt-feather-icons/commit/ea4670d))
+
+### 🎨 Styles
+
+- **nuxt-feather-icons:** Update UI labels to English ([0de015a](https://github.com/4sllan/nuxt-feather-icons/commit/0de015a))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.5
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.4...v1.3.5)

@@ -1,168 +1,115 @@
 <div align="center">
-<img src=".github/nuxt-feather-icons.svg" width="200">
-</div>
+<img src=".github/nuxt-feather-icons.svg" width="200" alt="Nuxt Feather Icons Logo">
 <h1 align="center">Nuxt Feather Icons</h1>
-<p align="center">Feather Icons support for Nuxt with easy usage and dynamic components.</p>
-<br>
-
+<p align="center">High-performance Feather Icons for Nuxt with full Tree-Shaking and SSR support.</p>
 
 [![npm version][npm-v-src]][npm-v-href]
 [![GitHub License][license]][license-href]
 [![npm downloads][npm-d-src]][npm-d-href]
-[![Nuxt nuxt-feather-icons][nuxt-src]][nuxt-href]
-[![Static Badge][sponsor-src]][sponsor-href]
+[![Nuxt][nuxt-src]][nuxt-href]
+[![Sponsors][sponsor-src]][sponsor-href]
+</div>
 
-# 🚀 Pro-Tips: Performance & Architecture
+<br/>
 
-## 🌳 Smart Tree-Shaking
-Unlike traditional icon libraries that might bundle the entire SVG set, Nuxt Feather Icons uses a static mapping strategy. When you use useFeatherIcon('HomeIcon'), Vite's dependency graph identifies the specific import path for HomeIcon.js.
+## ✨ Features
 
-- Result: Only the icons you actually reference in your code (as components or via the composable) are included in your final JS bundle.
-- Zero-Runtime Compiler: All icons are pre-compiled into Vue render functions (h()). This means they work out-of-the-box in Nuxt production builds without needing the heavy Vue template compiler.
+- **Zero-Runtime Compiler:** All icons are pre-compiled into Vue render functions (`h()`).
+- **Smart Tree-Shaking:** Only the icons you use are bundled.
+- **Auto-imported Components:** Use `<HomeIcon />` anywhere without imports.
+- **Dynamic Resolver:** Specialized composable for dynamic menus and database-driven icons.
+- **SSR Ready:** Perfect hydration and lightning-fast server-side rendering.
 
-## ⚡ SSR & Hydration
-The components are generated as pure functional-like components. This ensures:
+## 📦 Install
 
-- Fast SSR: Lightning-fast string generation on the server.
-- Lightweight Hydration: Minimal overhead when the client takes over, as there's no complex reactive state inside the icon itself.
-
-## 🛠️ Handling Prefixes Dynamically
-If you use a custom prefix, the composable expects the full PascalCase name. You can easily create a helper if your data only contains the icon slug:
-
-```vue
-<script setup lang="ts">
-// If prefix is 'Fi'
-const getIcon = (slug: string) => useFeatherIcon(`Fi${slug}Icon`)
-</script>
-<template>
-  <--Usage-->
-  <component :is="getIcon('Home')" />
-</template>
-```
-
-
-## Install
-
-Add the module to your Nuxt project:
+Add the module to your Nuxt project with a single command:
 
 ```bash
 npx nuxi@latest module add nuxt-feather-icons
 ```
+## 🛠️ Setup
+Register the module in your nuxt.config.ts:
 
-## Setup
-
-Add the module to `nuxt.config.js`:
-
-```typescript jsx
+```typescript
 export default defineNuxtConfig({
   modules: [
     'nuxt-feather-icons'
   ],
+  nuxtFeatherIcons: {
+    // Optional: add a prefix to all icon components (e.g. <FiHomeIcon />)
+    prefix: 'F'
+  }
 })
 ```
-Feather Icons are automatically registered as components. You can use any icon like `<HomeIcon />`.
-
-```typescript
-export default defineNuxtConfig({
-    nuxtFeatherIcons: {
-        // optional prefix for icons
-        prefix: 'Fi'
-    }
-})
- 
-```
-
-## Basic Usage
+## 🚀 Usage
+### Basic Usage
+Icons are automatically registered. Just use the PascalCase name of any Feather icon:
 
 ```vue
 <template>
-    <div>
-        <HomeIcon size="2x" />
-        <UsersIcon size="40" class="text-blue-500" />
-    </div>
+  <div class="flex gap-4">
+    <HomeIcon size="24" />
+    <UsersIcon size="2x" class="text-blue-500" />
+    <SettingsIcon size="1.5x" stroke-width="3" />
+  </div>
 </template>
 ```
-- `size="2x"` → multiples of the parent font-size
-- `size="40"` → absolute pixels
-- `class` → custom CSS classes
 
-## Dynamic Icons
+### Dynamic Icons (The Best Way)
+If you need to render icons based on data (like a sidebar menu), use the `useFeatherIcon` composable. It's the most efficient method for tree-shaking and works in runtime-only environments.
 
 ```vue
+
 <script setup lang="ts">
-    import { shallowRef, resolveComponent } from 'vue'
-
-    // Menu items com componentes resolvidos
-    const menuItems = shallowRef([
-        { icon: resolveComponent('HomeIcon') },
-        { icon: resolveComponent('UsersIcon') },
-        { icon: resolveComponent('LayersIcon') },
-    ])
-</script>
-
-<template>
-    <ul>
-        <li v-for="(item, index) in menuItems" :key="index">
-            <component :is="item.icon" size="2x" class="mr-2"/>
-            {{ item.icon.name }}
-        </li>
-    </ul>
-</template>
-```
-- Use resolveComponent to dynamically load icons
-- Perfect for menus, toolbars, or any dynamic lists
-
-## ⚡ Enhanced Dynamic Icons (Recommended)
-
-Now you can use the `useFeatherIcon` composable. This is the **most efficient way** to render icons dynamically because it works perfectly with Nuxt's tree-shaking and doesn't require the Vue runtime compiler.
-
-```vue
-<script setup lang="ts">
-  const menuItems = [
-    { name: 'Home', icon: 'HomeIcon' },
-    { name: 'Users', icon: 'UsersIcon' },
-    { name: 'Settings', icon: 'SettingsIcon' },
-  ]
+const menuItems = [
+  { name: 'Dashboard', icon: 'HomeIcon' },
+  { name: 'Team', icon: 'UsersIcon' },
+  { name: 'Settings', icon: 'SettingsIcon' },
+]
 </script>
 
 <template>
   <ul>
     <li v-for="item in menuItems" :key="item.name">
-      <component
-          :is="useFeatherIcon(item.icon)"
-          size="20"
-          class="mr-2"
-      />
+      <component :is="useFeatherIcon(item.icon)" size="20" class="mr-2" />
       {{ item.name }}
     </li>
   </ul>
 </template>
+```
 
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | string \| number | 24 | Icon size. Use numbers for px or strings like 2x, 1.5em. |
+| class | string | '' | Custom CSS classes for styling. |
+| stroke-width | number | 2 | Thickness of the icon lines. |
+
+### Tailwind CSS Integration
+Since they are rendered as SVGs, you can use any utility class:
+
+```html
+<HeartIcon size="3x" class="text-red-500 hover:scale-110 transition-transform" />
 ```
 
 
-### Why use useFeatherIcon?
-- Tree-shaking Friendly: Only the icons you actually use (or reference in your logic) will be included in the final bundle.
-- Runtime Ready: Works in environments without the Vue template compiler (runtime-only).
-- Type Safe: If you are using TypeScript, you'll get autocomplete for icon names.
+## 💡 Performance & Architecture
+### 🌳 Tree-Shaking
+Unlike libraries that bundle the entire SVG library, Nuxt Feather Icons uses a virtual mapping strategy. 
+When you use `useFeatherIcon('HomeIcon')`, Vite identifies the specific file and excludes the rest of the library from your production build.
 
-## Props
+### ⚡ SSR & Hydration
+Icons are generated as pure functional render functions. This ensures:
 
-| Prop    | Type               | Default | Description                             |
-|---------|--------------------|---------|-----------------------------------------|
-| `size`  | `String \| Number` | `'1x'`  | Sets the icon size (e.g., `2x` or `30`) |
-| `class` | `String`           | `''`    | Custom CSS classes                      |
+- Fast SSR: Minimal string overhead on the server.
+- Lightweight Hydration: No reactive overhead for static icons.
 
-## Custom Styling
+### 🛠️ Handling Prefixes Dynamically
+If you use a custom prefix (e.g., F), the composable expects the full PascalCase name:
 
-- Combine with Tailwind, Windi, or any utility CSS
-- Icons inherit parent font size by default
-- Example with Tailwind:
-
-```vue
-<XIcon size="3x" class="text-red-500 hover:text-green-500 transition-colors" />
+```typescript
+// Helper for dynamic slugs
+const getIcon = (slug: string) => useFeatherIcon(`F${slug}Icon`)
 ```
-
 
 ## ⚖️ License
 
@@ -179,7 +126,7 @@ Released under the [MIT](/LICENSE) by [@4slan](https://github.com/4sllan).
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 
-[nuxt-href]: https://nuxt.com/
+[nuxt-href]: https://nuxt.com/modules/nuxt-feather-icons
 
 [npm-d-src]: https://img.shields.io/npm/dt/nuxt-feather-icons.svg?style=flat-square&colorA=18181B&colorB=28CF8D
 
