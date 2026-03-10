@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   ],
   nuxtFeatherIcons: {
     // Optional: add a prefix to all icon components (e.g. <FiHomeIcon />)
-    prefix: 'Fi'
+    prefix: 'F'
   }
 })
 ```
@@ -94,7 +94,8 @@ Since they are rendered as SVGs, you can use any utility class:
 
 ## 💡 Performance & Architecture
 ### 🌳 Tree-Shaking
-Unlike libraries that bundle the entire SVG library, Nuxt Feather Icons uses a virtual mapping strategy. When you use `useFeatherIcon('HomeIcon')`, Vite identifies the specific file and excludes the rest of the library from your production build.
+Unlike libraries that bundle the entire SVG library, Nuxt Feather Icons uses a virtual mapping strategy. 
+When you use `useFeatherIcon('HomeIcon')`, Vite identifies the specific file and excludes the rest of the library from your production build.
 
 ### ⚡ SSR & Hydration
 Icons are generated as pure functional render functions. This ensures:
@@ -103,11 +104,11 @@ Icons are generated as pure functional render functions. This ensures:
 - Lightweight Hydration: No reactive overhead for static icons.
 
 ### 🛠️ Handling Prefixes Dynamically
-If you use a custom prefix (e.g., Fi), the composable expects the full PascalCase name:
+If you use a custom prefix (e.g., F), the composable expects the full PascalCase name:
 
 ```typescript
 // Helper for dynamic slugs
-const getIcon = (slug: string) => useFeatherIcon(`Fi${slug}Icon`)
+const getIcon = (slug: string) => useFeatherIcon(`F${slug}Icon`)
 ```
 
 ## ⚖️ License
