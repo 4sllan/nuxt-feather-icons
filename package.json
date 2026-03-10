@@ -1,6 +1,6 @@
 {
   "name": "nuxt-feather-icons",
-  "version": "1.3.0",
+  "version": "1.3.9",
   "description": "Nuxt feather Icons",
   "keywords": [
     "nuxt",
@@ -50,12 +50,14 @@
     "@vue/test-utils": "^2.4.6",
     "changelogen": "^0.6.2",
     "eslint": "^10.0.3",
-    "feather-icons": "^4.29.2",
     "jsdom": "^28.1.0",
     "nuxt": "^4.3.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18",
     "vue": "^3.5.29",
     "vue-tsc": "^3.2.5"
+  },
+  "dependencies": {
+    "feather-icons": "^4.29.2"
   }
 }

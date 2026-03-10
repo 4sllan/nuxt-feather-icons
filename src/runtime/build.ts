@@ -1,6 +1,7 @@
 import feather from 'feather-icons'
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
+import { createResolver } from '@nuxt/kit'
 import type { Nuxt } from '@nuxt/schema'
 
 type ModuleIconsNames = {
@@ -62,10 +63,11 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
         componentPascalName: pascalCase(`${name}-icon`)
     }))
 
-    const componentsDir = path.join(
-        nuxt.options.buildDir,
-        'feather-icons'
-    )
+
+
+    const resolver = createResolver(import.meta.url)
+
+    const componentsDir = resolver.resolve('../runtime/components')
 
     await fs.mkdir(componentsDir, { recursive: true })
 
