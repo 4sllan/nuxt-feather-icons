@@ -8,8 +8,8 @@ import {
     addImports
 } from '@nuxt/kit'
 
-import { buildIcons } from './runtime/build'
-import { generateIconsTypes } from './types/generate-icons-types'
+import {buildIcons} from './runtime/build'
+import {generateIconsTypes} from './types/generate-icons-types'
 
 const PACKAGE_NAME = 'nuxt-feather-icons'
 
