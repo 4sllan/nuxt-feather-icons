@@ -40,7 +40,7 @@ export default defineAppConfig({
     colorMode: false,
     links: [
       {
-        'icon': 'i-simple-icons-github',
+        'icon': 'GithubIcon',
         'to': 'https://github.com/4sllan',
         'target': '_blank',
         'aria-label': '4slan on GitHub'
@@ -51,18 +51,18 @@ export default defineAppConfig({
     title: 'Table of Contents',
     bottom: {
       title: 'Ready to contribute?',
-      edit: 'https://github.com/4sllan/nuxt-umbu/edit/main/docs/content',
+      edit: 'https://github.com/4sllan/nuxt-feather-icons?tab=contributing-ov-file',
       links: [
         {
           icon: 'i-lucide-star',
           label: 'Star on GitHub',
-          to: 'https://github.com/4sllan/nuxt-umbu',
+          to: 'https://github.com/4sllan/nuxt-feather-icons',
           target: '_blank'
         },
         {
           icon: 'i-lucide-git-pull-request-create',
           label: 'Suggest a feature',
-          to: 'https://github.com/4sllan/nuxt-umbu/issues/new?template=feature_request.md',
+          to: 'https://github.com/4sllan/nuxt-feather-icons/issues/new?template=feature_request.md',
           target: '_blank'
         },
         {
