@@ -29,13 +29,17 @@ const filteredIcons = computed(() => {
   return icons.filter(icon => icon.name.toLowerCase().includes(query))
 })
 
-const copyIconName = (name: string) => {
+const copyIconName = async (name: string) => {
   // Formata como o usuário provavelmente usaria no código: <IconName />
   const componentTag = `<${name} />`
-  navigator.clipboard.writeText(componentTag)
-  copiedIconName.value = componentTag
-  showToast.value = true
-  setTimeout(() => { showToast.value = false }, 2000)
+  try {
+    await navigator.clipboard.writeText(componentTag)
+    copiedIconName.value = componentTag
+    showToast.value = true
+    setTimeout(() => { showToast.value = false }, 2000)
+  } catch {
+    showToast.value = false
+  }
 }
 </script>
 
