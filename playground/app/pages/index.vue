@@ -8,11 +8,11 @@ import * as allIcons from '#feather-icons-map'
  * Como o import * traz componentes nomeados (ex: IconUser, IconHome),
  * podemos formatar o nome para exibição.
  */
+// playground/app/pages/index.vue
 const icons = Object.entries(allIcons).map(([key, component]) => {
   return {
-    id: key,
-    // Remove o prefixo "Icon" (se houver) para uma busca mais natural
-    name: key.replace(/^Icon/, ''),
+    id: key, // Mantém "HomeIcon" ou "UserIcon" para o código
+    name: key.replace(/Icon$/, ''), // Transforma em "Home" ou "User" para a UI
     component: component
   }
 })
