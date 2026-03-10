@@ -12,103 +12,47 @@
 
 <br/>
 
-## ✨ Features
+**Nuxt Feather Icons** is the most efficient way to use Feather Icons in your Nuxt project. Every icon is pre-compiled into a Vue render function, ensuring your production bundle only includes exactly what you use.
 
-- **Zero-Runtime Compiler:** All icons are pre-compiled into Vue render functions (`h()`).
-- **Smart Tree-Shaking:** Only the icons you use are bundled.
-- **Auto-imported Components:** Use `<HomeIcon />` anywhere without imports.
-- **Dynamic Resolver:** Specialized composable for dynamic menus and database-driven icons.
-- **SSR Ready:** Perfect hydration and lightning-fast server-side rendering.
+## 📖 Documentation
 
-## 📦 Install
+For full installation guides, configuration options, and the **Icon Gallery**, visit our documentation:
 
-Add the module to your Nuxt project with a single command:
+👉 **[Documentation](https://4sllan.github.io/nuxt-feather-icons/)**
+
+## ✨ Highlights
+
+- **Zero-Runtime Compiler:** Icons are pre-compiled into lightweight render functions (`h()`).
+- **Smart Tree-Shaking:** Automatically excludes unused icons from your bundle.
+- **Auto-imported:** Use `<HomeIcon />` anywhere without manual imports.
+- **Dynamic Resolver:** Efficiently render icons from strings using `useFeatherIcon()`.
+- **SSR Ready:** Optimized for fast server-side rendering and hydration.
+
+## 📦 Quick Start
 
 ```bash
+# Install using nuxi
 npx nuxi@latest module add nuxt-feather-icons
 ```
-## 🛠️ Setup
-Register the module in your nuxt.config.ts:
-
-```typescript
-export default defineNuxtConfig({
-  modules: [
-    'nuxt-feather-icons'
-  ],
-  nuxtFeatherIcons: {
-    // Optional: add a prefix to all icon components (e.g. <FiHomeIcon />)
-    prefix: 'F'
-  }
-})
-```
-## 🚀 Usage
-### Basic Usage
-Icons are automatically registered. Just use the PascalCase name of any Feather icon:
 
 ```vue
 <template>
   <div class="flex gap-4">
     <HomeIcon size="24" />
     <UsersIcon size="2x" class="text-blue-500" />
-    <SettingsIcon size="1.5x" stroke-width="3" />
+    <SettingsIcon :stroke-width="1.5" />
   </div>
 </template>
 ```
-
-### Dynamic Icons (The Best Way)
-If you need to render icons based on data (like a sidebar menu), use the `useFeatherIcon` composable. It's the most efficient method for tree-shaking and works in runtime-only environments.
-
-```vue
-
-<script setup lang="ts">
-const menuItems = [
-  { name: 'Dashboard', icon: 'HomeIcon' },
-  { name: 'Team', icon: 'UsersIcon' },
-  { name: 'Settings', icon: 'SettingsIcon' },
-]
-</script>
-
-<template>
-  <ul>
-    <li v-for="item in menuItems" :key="item.name">
-      <component :is="useFeatherIcon(item.icon)" size="20" class="mr-2" />
-      {{ item.name }}
-    </li>
-  </ul>
-</template>
-```
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| size | string \| number | 24 | Icon size. Use numbers for px or strings like 2x, 1.5em. |
-| class | string | '' | Custom CSS classes for styling. |
-| stroke-width | number | 2 | Thickness of the icon lines. |
-
-### Tailwind CSS Integration
-Since they are rendered as SVGs, you can use any utility class:
-
-```html
-<HeartIcon size="3x" class="text-red-500 hover:scale-110 transition-transform" />
-```
-
-
-## 💡 Performance & Architecture
-### 🌳 Tree-Shaking
-Unlike libraries that bundle the entire SVG library, Nuxt Feather Icons uses a virtual mapping strategy. 
-When you use `useFeatherIcon('HomeIcon')`, Vite identifies the specific file and excludes the rest of the library from your production build.
-
-### ⚡ SSR & Hydration
-Icons are generated as pure functional render functions. This ensures:
-
-- Fast SSR: Minimal string overhead on the server.
-- Lightweight Hydration: No reactive overhead for static icons.
-
-### 🛠️ Handling Prefixes Dynamically
-If you use a custom prefix (e.g., F), the composable expects the full PascalCase name:
+## 🛠️ Configuration
 
 ```typescript
-// Helper for dynamic slugs
-const getIcon = (slug: string) => useFeatherIcon(`F${slug}Icon`)
+export default defineNuxtConfig({
+  modules: ['nuxt-feather-icons'],
+  nuxtFeatherIcons: {
+    prefix: 'F' // Optional: results in <FHomeIcon />
+  }
+})
 ```
 
 ## ⚖️ License
