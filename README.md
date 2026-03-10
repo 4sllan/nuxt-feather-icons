@@ -12,6 +12,35 @@
 [![Nuxt nuxt-feather-icons][nuxt-src]][nuxt-href]
 [![Static Badge][sponsor-src]][sponsor-href]
 
+# 🚀 Pro-Tips: Performance & Architecture
+
+## 🌳 Smart Tree-Shaking
+Unlike traditional icon libraries that might bundle the entire SVG set, Nuxt Feather Icons uses a static mapping strategy. When you use useFeatherIcon('HomeIcon'), Vite's dependency graph identifies the specific import path for HomeIcon.js.
+
+- Result: Only the icons you actually reference in your code (as components or via the composable) are included in your final JS bundle.
+- Zero-Runtime Compiler: All icons are pre-compiled into Vue render functions (h()). This means they work out-of-the-box in Nuxt production builds without needing the heavy Vue template compiler.
+
+## ⚡ SSR & Hydration
+The components are generated as pure functional-like components. This ensures:
+
+- Fast SSR: Lightning-fast string generation on the server.
+- Lightweight Hydration: Minimal overhead when the client takes over, as there's no complex reactive state inside the icon itself.
+
+## 🛠️ Handling Prefixes Dynamically
+If you use a custom prefix, the composable expects the full PascalCase name. You can easily create a helper if your data only contains the icon slug:
+
+```vue
+<script setup lang="ts">
+// If prefix is 'Fi'
+const getIcon = (slug: string) => useFeatherIcon(`Fi${slug}Icon`)
+</script>
+<template>
+  <--Usage-->
+  <component :is="getIcon('Home')" />
+</template>
+```
+
+
 ## Install
 
 Add the module to your Nuxt project:
@@ -82,6 +111,40 @@ export default defineNuxtConfig({
 ```
 - Use resolveComponent to dynamically load icons
 - Perfect for menus, toolbars, or any dynamic lists
+
+## ⚡ Enhanced Dynamic Icons (Recommended)
+
+Now you can use the `useFeatherIcon` composable. This is the **most efficient way** to render icons dynamically because it works perfectly with Nuxt's tree-shaking and doesn't require the Vue runtime compiler.
+
+```vue
+<script setup lang="ts">
+  const menuItems = [
+    { name: 'Home', icon: 'HomeIcon' },
+    { name: 'Users', icon: 'UsersIcon' },
+    { name: 'Settings', icon: 'SettingsIcon' },
+  ]
+</script>
+
+<template>
+  <ul>
+    <li v-for="item in menuItems" :key="item.name">
+      <component
+          :is="useFeatherIcon(item.icon)"
+          size="20"
+          class="mr-2"
+      />
+      {{ item.name }}
+    </li>
+  </ul>
+</template>
+
+```
+
+
+### Why use useFeatherIcon?
+- Tree-shaking Friendly: Only the icons you actually use (or reference in your logic) will be included in the final bundle.
+- Runtime Ready: Works in environments without the Vue template compiler (runtime-only).
+- Type Safe: If you are using TypeScript, you'll get autocomplete for icon names.
 
 ## Props
 
