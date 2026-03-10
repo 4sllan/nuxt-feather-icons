@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+// Importa todos os ícones mapeados no alias
+import * as allIcons from '#feather-icons-map'
 
-// Importa todos os arquivos do build de icons (eager)
-const modules = import.meta.glob('../../../src/runtime/components/*.js', { eager: true })
-
-// Pega os nomes dos arquivos e os componentes default
-const icons = Object.entries(modules).map(([path, mod]) => {
-  const match = path.match(/\/([^/]+)\.js$/)
-  const name = match ? match[1] : ''
+/**
+ * Transformamos o objeto importado em uma lista tratada.
+ * Como o import * traz componentes nomeados (ex: IconUser, IconHome),
+ * podemos formatar o nome para exibição.
+ */
+const icons = Object.entries(allIcons).map(([key, component]) => {
   return {
-    name,
-    component: (mod as any).default
+    id: key,
+    // Remove o prefixo "Icon" (se houver) para uma busca mais natural
+    name: key.replace(/^Icon/, ''),
+    component: component
   }
-}).filter(icon => icon.name)
+})
 
 const searchQuery = ref('')
 const iconSize = ref(32)
@@ -27,8 +30,10 @@ const filteredIcons = computed(() => {
 })
 
 const copyIconName = (name: string) => {
-  navigator.clipboard.writeText(name)
-  copiedIconName.value = name
+  // Formata como o usuário provavelmente usaria no código: <IconName />
+  const componentTag = `<${name} />`
+  navigator.clipboard.writeText(componentTag)
+  copiedIconName.value = componentTag
   showToast.value = true
   setTimeout(() => { showToast.value = false }, 2000)
 }
