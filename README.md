@@ -56,7 +56,7 @@ Icons are automatically registered. Just use the PascalCase name of any Feather 
 ```
 
 ### Dynamic Icons (The Best Way)
-If you need to render icons based on data (like a sidebar menu), use the useFeatherIcon composable. It's the most efficient method for tree-shaking and works in runtime-only environments.
+If you need to render icons based on data (like a sidebar menu), use the `useFeatherIcon` composable. It's the most efficient method for tree-shaking and works in runtime-only environments.
 
 ```vue
 
@@ -94,7 +94,7 @@ Since they are rendered as SVGs, you can use any utility class:
 
 ## 💡 Performance & Architecture
 ### 🌳 Tree-Shaking
-Unlike libraries that bundle the entire SVG library, Nuxt Feather Icons uses a virtual mapping strategy. When you use useFeatherIcon('HomeIcon'), Vite identifies the specific file and excludes the rest of the library from your production build.
+Unlike libraries that bundle the entire SVG library, Nuxt Feather Icons uses a virtual mapping strategy. When you use `useFeatherIcon('HomeIcon')`, Vite identifies the specific file and excludes the rest of the library from your production build.
 
 ### ⚡ SSR & Hydration
 Icons are generated as pure functional render functions. This ensures:
