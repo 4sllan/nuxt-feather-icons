@@ -1,4 +1,0 @@
-# pnpm-workspace.yaml
-packages:
-  - '.'
-  - 'docs'
