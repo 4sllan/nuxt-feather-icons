@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     ],
 
     routeRules: {
-        '/': { redirect: '/getting-started' }
+        '/': { redirect: '/nuxt-feather-icons/getting-started' }
     },
 
     compatibilityDate: '2024-07-11',
