@@ -1,4 +1,92 @@
 
+## v1.4.0
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.9...v1.4.0)
+
+### 🚀 Enhancements
+
+- **core:** Add useFeatherIcon composable ([9b52d8b](https://github.com/4sllan/nuxt-feather-icons/commit/9b52d8b))
+- **nuxt-feather-icons:** Add dynamic icon map generation and types ([2a8423d](https://github.com/4sllan/nuxt-feather-icons/commit/2a8423d))
+- **core:** Add useFeatherIcon composable ([735b614](https://github.com/4sllan/nuxt-feather-icons/commit/735b614))
+- **nuxt-feather-icons:** Render icons in documentation navigation ([7513440](https://github.com/4sllan/nuxt-feather-icons/commit/7513440))
+- **core:** Add IconExplorer component ([5c00ecd](https://github.com/4sllan/nuxt-feather-icons/commit/5c00ecd))
+- **nuxt-feather-icons:** Render icons in documentation links ([97af20b](https://github.com/4sllan/nuxt-feather-icons/commit/97af20b))
+- **nuxt-feather-icons:** Add strokeWidth prop ([db40c73](https://github.com/4sllan/nuxt-feather-icons/commit/db40c73))
+- **nuxt-feather-icons:** Support string type for strokeWidth prop ([0f22f92](https://github.com/4sllan/nuxt-feather-icons/commit/0f22f92))
+- **nuxt-feather-icons:** Display feather icons in link leading slot ([a9d1ad6](https://github.com/4sllan/nuxt-feather-icons/commit/a9d1ad6))
+- **nuxt-feather-icons:** Add route rule to redirect root to getting-started ([e45e73c](https://github.com/4sllan/nuxt-feather-icons/commit/e45e73c))
+
+### 🩹 Fixes
+
+- **nuxt-feather-icons:** Fix icon name replacement regex to remove suffix instead of prefix ([22bcb55](https://github.com/4sllan/nuxt-feather-icons/commit/22bcb55))
+- **nuxt-feather-icons:** Add async/await and error handling for clipboard copy ([95e3bae](https://github.com/4sllan/nuxt-feather-icons/commit/95e3bae))
+- **nuxt-feather-icons:** Remove redundant button ([081efa0](https://github.com/4sllan/nuxt-feather-icons/commit/081efa0))
+- **nuxt-feather-icons:** Remove page extension from edit link ([125f105](https://github.com/4sllan/nuxt-feather-icons/commit/125f105))
+- **nuxt-feather-icons:** Improve keyboard navigation ([21e53fa](https://github.com/4sllan/nuxt-feather-icons/commit/21e53fa))
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Update navigation and components ([c934274](https://github.com/4sllan/nuxt-feather-icons/commit/c934274))
+- **nuxt-feather-icons:** Refactor build configuration to use addComponentsDir and dynamic templates ([8e7423f](https://github.com/4sllan/nuxt-feather-icons/commit/8e7423f))
+- **nuxt-feather-icons:** Use compiled map for icon imports ([eb92847](https://github.com/4sllan/nuxt-feather-icons/commit/eb92847))
+- **playground:** Rename property to label and update regex for prefix handling ([4f342c1](https://github.com/4sllan/nuxt-feather-icons/commit/4f342c1))
+
+### 📖 Documentation
+
+- **core:** Add project documentation and setup ([213d34a](https://github.com/4sllan/nuxt-feather-icons/commit/213d34a))
+- **nuxt-feather-icons:** Update nuxt-href link to module documentation - Update link destination to https://nuxt.com/modules/nuxt-feather-icons ([caf8818](https://github.com/4sllan/nuxt-feather-icons/commit/caf8818))
+- **nuxt-feather-icons:** Add documentation for performance architecture and dynamic icons usage ([f181814](https://github.com/4sllan/nuxt-feather-icons/commit/f181814))
+- **nuxt-feather-icons:** Improve README structure and add feature highlights - Add feature highlights section describing Zero-Runtime Compiler and Tree-Shaking - Renumber sections for better logical flow - Update usage examples to demonstrate `useFeatherIcon` composable ([4002d7c](https://github.com/4sllan/nuxt-feather-icons/commit/4002d7c))
+- **nuxt-feather-icons:** Wrap function names in code block ([49c5e2a](https://github.com/4sllan/nuxt-feather-icons/commit/49c5e2a))
+- **nuxt-feather-icons:** Update prefix examples from 'Fi' to 'F' ([259845b](https://github.com/4sllan/nuxt-feather-icons/commit/259845b))
+- **nuxt-feather-icons:** Update getting started guide with accurate module description ([80a967c](https://github.com/4sllan/nuxt-feather-icons/commit/80a967c))
+- Add icons documentation ([9ed3fbc](https://github.com/4sllan/nuxt-feather-icons/commit/9ed3fbc))
+- **core:** Add dynamic icons documentation ([1c6c0d7](https://github.com/4sllan/nuxt-feather-icons/commit/1c6c0d7))
+- Update installation guide with correct package names ([246ba6f](https://github.com/4sllan/nuxt-feather-icons/commit/246ba6f))
+- **core:** Add components usage documentation ([4b9518b](https://github.com/4sllan/nuxt-feather-icons/commit/4b9518b))
+- **core:** Add API index documentation ([dbfe473](https://github.com/4sllan/nuxt-feather-icons/commit/dbfe473))
+- **core:** Add basic usage documentation ([89f2960](https://github.com/4sllan/nuxt-feather-icons/commit/89f2960))
+- **core:** Add navigation configuration for API section ([c93fe3d](https://github.com/4sllan/nuxt-feather-icons/commit/c93fe3d))
+- **nuxt-feather-icons:** Restructure README and remove verbose sections ([ca87a69](https://github.com/4sllan/nuxt-feather-icons/commit/ca87a69))
+- **nuxt-feather-icons:** Update documentation link text ([7453d81](https://github.com/4sllan/nuxt-feather-icons/commit/7453d81))
+- **nuxt-feather-icons:** Update site metadata and documentation navigation ([4cac7b1](https://github.com/4sllan/nuxt-feather-icons/commit/4cac7b1))
+- **nuxt-feather-icons:** Update repository link in site configuration - Replace old repository URL with correct project URL - Update link in app.config.ts ([245dc74](https://github.com/4sllan/nuxt-feather-icons/commit/245dc74))
+- **nuxt-feather-icons:** Keep link as plain text ([8e061cc](https://github.com/4sllan/nuxt-feather-icons/commit/8e061cc))
+- **nuxt-feather-icons:** Update documentation configuration ([d4ada4e](https://github.com/4sllan/nuxt-feather-icons/commit/d4ada4e))
+- **nuxt-feather-icons:** Update documentation description to remove Nuxt 3 reference ([65da4f0](https://github.com/4sllan/nuxt-feather-icons/commit/65da4f0))
+- **nuxt-feather-icons:** Document default Icon properties - explain default configuration values ([9df0e48](https://github.com/4sllan/nuxt-feather-icons/commit/9df0e48))
+- **nuxt-feather-icons:** Update external link icon reference and disable edit link ([e390571](https://github.com/4sllan/nuxt-feather-icons/commit/e390571))
+- **nuxt-feather-icons:** Fix code block syntax label - Update label from [nuxt.config.vue] to [nuxt.config.ts] ([0bf25f7](https://github.com/4sllan/nuxt-feather-icons/commit/0bf25f7))
+- **nuxt-feather-icons:** Wrap content in HTML comments ([924eda7](https://github.com/4sllan/nuxt-feather-icons/commit/924eda7))
+- **docs:** Remove index page ([112b278](https://github.com/4sllan/nuxt-feather-icons/commit/112b278))
+
+### 📦 Build
+
+- **core:** Add pnpm workspace configuration ([3afcf62](https://github.com/4sllan/nuxt-feather-icons/commit/3afcf62))
+- **nuxt-feather-icons:** Configure pnpm workspace ([4be4aa7](https://github.com/4sllan/nuxt-feather-icons/commit/4be4aa7))
+
+### 🏡 Chore
+
+- **nuxt-feather-icons:** Update site configuration and assets for rebranding ([c4fcf6e](https://github.com/4sllan/nuxt-feather-icons/commit/c4fcf6e))
+- **core:** Add documentation workflow ([47e2ec2](https://github.com/4sllan/nuxt-feather-icons/commit/47e2ec2))
+- **core:** Remove unused cover image ([c8eea1f](https://github.com/4sllan/nuxt-feather-icons/commit/c8eea1f))
+- **nuxt-feather-icons:** Update package metadata - Add homepage, bugs, and funding links - Enhance keywords for better discoverability ([aca797a](https://github.com/4sllan/nuxt-feather-icons/commit/aca797a))
+- **core:** Remove docs README ([718d7d2](https://github.com/4sllan/nuxt-feather-icons/commit/718d7d2))
+- **nuxt-feather-icons:** Remove commented configuration options ([6fd5bd8](https://github.com/4sllan/nuxt-feather-icons/commit/6fd5bd8))
+- **nuxt-feather-icons:** Remove commented documentation link ([0051fa2](https://github.com/4sllan/nuxt-feather-icons/commit/0051fa2))
+- **nuxt-feather-icons:** Add docs ([cc74bda](https://github.com/4sllan/nuxt-feather-icons/commit/cc74bda))
+- **docs:** Add npmrc configuration and update dependency version ([ef578a1](https://github.com/4sllan/nuxt-feather-icons/commit/ef578a1))
+- **nuxt-feather-icons:** Disable feather icons rendering ([6e1cd5c](https://github.com/4sllan/nuxt-feather-icons/commit/6e1cd5c))
+
+### 🎨 Styles
+
+- **nuxt-feather-icons:** Update brand green color with dark mode support ([af0acec](https://github.com/4sllan/nuxt-feather-icons/commit/af0acec))
+- **nuxt-feather-icons:** Improve documentation readability - Adjust table column alignment for better readability - Reflow long lines for improved formatting ([34ca878](https://github.com/4sllan/nuxt-feather-icons/commit/34ca878))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.3.9
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.8...v1.3.9)

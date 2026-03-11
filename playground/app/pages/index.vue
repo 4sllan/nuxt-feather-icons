@@ -8,11 +8,11 @@ import * as allIcons from '#feather-icons-map'
  * Como o import * traz componentes nomeados (ex: IconUser, IconHome),
  * podemos formatar o nome para exibição.
  */
-// playground/app/pages/index.vue
 const icons = Object.entries(allIcons).map(([key, component]) => {
   return {
-    id: key, // Mantém "HomeIcon" ou "UserIcon" para o código
-    name: key.replace(/Icon$/, ''), // Transforma em "Home" ou "User" para a UI
+    id: key,
+    // Remove o prefixo "Icon" (se houver) para uma busca mais natural
+    label: key.replace(/^Icon/, ''),
     component: component
   }
 })
@@ -26,7 +26,7 @@ const copiedIconName = ref('')
 const filteredIcons = computed(() => {
   if (!searchQuery.value) {return icons}
   const query = searchQuery.value.toLowerCase()
-  return icons.filter(icon => icon.name.toLowerCase().includes(query))
+  return icons.filter(icon => icon.label.toLowerCase().includes(query))
 })
 
 const copyIconName = async (name: string) => {
@@ -91,9 +91,9 @@ const copyIconName = async (name: string) => {
     <div class="icons-grid">
       <div
           v-for="icon in filteredIcons"
-          :key="icon.name"
+          :key="icon.label"
           class="icon-card"
-          @click="copyIconName(icon.name)"
+          @click="copyIconName(icon.label)"
       >
         <component
             :is="icon.component"
@@ -101,7 +101,7 @@ const copyIconName = async (name: string) => {
             :stroke-width="strokeWidth"
             class="icon"
         />
-        <span class="icon-name">{{ icon.name }}</span>
+        <span class="icon-name">{{ icon.label }}</span>
       </div>
     </div>
 

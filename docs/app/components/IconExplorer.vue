@@ -29,13 +29,17 @@ const filteredIcons = computed(() => {
   return icons.filter(icon => icon.name.toLowerCase().includes(query))
 })
 
-const copyIconName = (name: string) => {
+const copyIconName = async (name: string) => {
   // Formata como o usuário provavelmente usaria no código: <IconName />
   const componentTag = `<${name} />`
-  navigator.clipboard.writeText(componentTag)
-  copiedIconName.value = componentTag
-  showToast.value = true
-  setTimeout(() => { showToast.value = false }, 2000)
+  try {
+    await navigator.clipboard.writeText(componentTag)
+    copiedIconName.value = componentTag
+    showToast.value = true
+    setTimeout(() => { showToast.value = false }, 2000)
+  } catch {
+    showToast.value = false
+  }
 }
 </script>
 
@@ -52,8 +56,9 @@ const copyIconName = (name: string) => {
 
         <div class="customization">
           <div class="control-group">
-            <label>Size</label>
+            <label for="icon-size">Size</label>
             <input
+                id="icon-size"
                 v-model="iconSize"
                 type="range"
                 min="16"
@@ -65,8 +70,9 @@ const copyIconName = (name: string) => {
           </div>
 
           <div class="control-group">
-            <label>Stroke</label>
+            <label for="icon-stroke-width">Stroke</label>
             <input
+                id="icon-stroke-width"
                 v-model="strokeWidth"
                 type="range"
                 min="1"
@@ -85,6 +91,8 @@ const copyIconName = (name: string) => {
           v-for="icon in filteredIcons"
           :key="icon.name"
           class="icon-card"
+          role="button"
+          tabindex="0"
           @click="copyIconName(icon.name)"
       >
         <component

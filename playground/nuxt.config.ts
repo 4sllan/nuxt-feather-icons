@@ -9,7 +9,7 @@ export default defineNuxtConfig({
         myModule
     ],
     nuxtFeatherIcons: {
-        // prefix: 'F'
+        // prefix: 'F',
     },
     compatibilityDate: '2026-03-07'
 })

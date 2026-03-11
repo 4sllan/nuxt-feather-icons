@@ -17,6 +17,7 @@ const { footer } = useAppConfig()
             :key="index"
             :to="link.to"
             :target="link.target"
+            :aria-label="link['aria-label']"
             color="neutral"
             variant="ghost"
         >

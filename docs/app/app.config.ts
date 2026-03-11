@@ -29,7 +29,7 @@ export default defineAppConfig({
     links: [
       {
         'icon': 'GithubIcon',
-        'to': 'https://github.com/4sllan/nuxt-umbu',
+        'to': 'https://github.com/4sllan/nuxt-feather-icons',
         'target': '_blank',
         'aria-label': 'GitHub'
       }
@@ -54,19 +54,19 @@ export default defineAppConfig({
       edit: 'https://github.com/4sllan/nuxt-feather-icons?tab=contributing-ov-file',
       links: [
         {
-          icon: 'i-lucide-star',
+          icon: 'StarIcon',
           label: 'Star on GitHub',
           to: 'https://github.com/4sllan/nuxt-feather-icons',
           target: '_blank'
         },
         {
-          icon: 'i-lucide-git-pull-request-create',
+          icon: 'GitPullRequestIcon',
           label: 'Suggest a feature',
           to: 'https://github.com/4sllan/nuxt-feather-icons/issues/new?template=feature_request.md',
           target: '_blank'
         },
         {
-          icon: 'i-simple-icons-github',
+          icon: 'GithubIcon',
           label: 'Support project',
           to: 'https://github.com/sponsors/4sllan',
           target: '_blank'
