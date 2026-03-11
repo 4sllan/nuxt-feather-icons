@@ -56,8 +56,9 @@ const copyIconName = async (name: string) => {
 
         <div class="customization">
           <div class="control-group">
-            <label>Size</label>
+            <label for="icon-size">Size</label>
             <input
+                id="icon-size"
                 v-model="iconSize"
                 type="range"
                 min="16"
@@ -69,8 +70,9 @@ const copyIconName = async (name: string) => {
           </div>
 
           <div class="control-group">
-            <label>Stroke</label>
+            <label for="icon-stroke-width">Stroke</label>
             <input
+                id="icon-stroke-width"
                 v-model="strokeWidth"
                 type="range"
                 min="1"
