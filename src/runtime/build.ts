@@ -30,7 +30,7 @@ export default {
       default: 24
     },
     strokeWidth: {
-      type: Number,
+      type: [String, Number],
       default: 2
     },
     class: {
@@ -49,7 +49,7 @@ export default {
       ...${JSON.stringify(attrs)},
       width: size.value,
       height: size.value,
-      stroke-width: props.strokeWidth,
+      'stroke-width': props.strokeWidth,
       class: '${attrs.class || ''}' + ' ' + props.class,
       innerHTML: \`${innerHTML}\`
     })
