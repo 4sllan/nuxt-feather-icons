@@ -18,10 +18,6 @@ export default defineNuxtConfig({
         'nuxt-llms'
     ],
 
-    routeRules: {
-        '/': { redirect: '/nuxt-feather-icons/getting-started' }
-    },
-
     compatibilityDate: '2024-07-11',
 
     nitro: {
@@ -33,6 +29,10 @@ export default defineNuxtConfig({
             crawlLinks: true,
             autoSubfolderIndex: false
         }
+    },
+
+    icon: {
+        provider: 'iconify'
     },
 
     llms: {
