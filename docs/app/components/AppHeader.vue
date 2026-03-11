@@ -33,7 +33,9 @@ const {header} = useAppConfig()
         <UButton
             v-for="(link, index) of header.links"
             :key="index"
+            :to="link.to"
             :target="link.target"
+            :aria-label="link['aria-label']"
             color='neutral'
             variant='ghost'
         >
