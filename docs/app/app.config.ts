@@ -1,0 +1,77 @@
+const siteName = 'Nuxt Feather Icons'
+
+export default defineAppConfig({
+  ui: {
+    colors: {
+      primary: 'brand-green',
+      neutral: 'zinc'
+    },
+    footer: {
+      slots: {
+        root: 'border-t border-default',
+        left: 'text-sm text-muted'
+      }
+    }
+  },
+  seo: {
+    siteName: siteName
+  },
+  header: {
+    title: siteName,
+    to: '/',
+    logo: {
+      alt: 'Nuxt Feather Icons - High-performance Feather Icons for Nuxt with full Tree-Shaking and SSR support.',
+      light: 'logo.svg',
+      dark: 'logo.svg'
+    },
+    search: true,
+    colorMode: true,
+    links: [
+      {
+        'icon': 'GithubIcon',
+        'to': 'https://github.com/4sllan/nuxt-feather-icons',
+        'target': '_blank',
+        'aria-label': 'GitHub'
+      }
+    ]
+  },
+  footer: {
+    credits: `Aslan Gama © ${new Date().getFullYear()}`,
+    colorMode: false,
+    links: [
+      {
+        'icon': 'GithubIcon',
+        'to': 'https://github.com/4sllan',
+        'target': '_blank',
+        'aria-label': '4slan on GitHub'
+      },
+    ]
+  },
+  toc: {
+    title: 'Table of Contents',
+    bottom: {
+      title: 'Ready to contribute?',
+      edit: 'https://github.com/4sllan/nuxt-feather-icons?tab=contributing-ov-file',
+      links: [
+        {
+          icon: 'StarIcon',
+          label: 'Star on GitHub',
+          to: 'https://github.com/4sllan/nuxt-feather-icons',
+          target: '_blank'
+        },
+        {
+          icon: 'GitPullRequestIcon',
+          label: 'Suggest a feature',
+          to: 'https://github.com/4sllan/nuxt-feather-icons/issues/new?template=feature_request.md',
+          target: '_blank'
+        },
+        {
+          icon: 'GithubIcon',
+          label: 'Support project',
+          to: 'https://github.com/sponsors/4sllan',
+          target: '_blank'
+        }
+      ]
+    }
+  }
+})
