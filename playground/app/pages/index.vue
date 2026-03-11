@@ -12,7 +12,7 @@ const icons = Object.entries(allIcons).map(([key, component]) => {
   return {
     id: key,
     // Remove o prefixo "Icon" (se houver) para uma busca mais natural
-    name: key.replace(/^Icon/, ''),
+    label: key.replace(/^Icon/, ''),
     component: component
   }
 })
@@ -26,16 +26,20 @@ const copiedIconName = ref('')
 const filteredIcons = computed(() => {
   if (!searchQuery.value) {return icons}
   const query = searchQuery.value.toLowerCase()
-  return icons.filter(icon => icon.name.toLowerCase().includes(query))
+  return icons.filter(icon => icon.label.toLowerCase().includes(query))
 })
 
-const copyIconName = (name: string) => {
+const copyIconName = async (name: string) => {
   // Formata como o usuário provavelmente usaria no código: <IconName />
   const componentTag = `<${name} />`
-  navigator.clipboard.writeText(componentTag)
-  copiedIconName.value = componentTag
-  showToast.value = true
-  setTimeout(() => { showToast.value = false }, 2000)
+  try {
+    await navigator.clipboard.writeText(componentTag)
+    copiedIconName.value = componentTag
+    showToast.value = true
+    setTimeout(() => { showToast.value = false }, 2000)
+  } catch {
+    showToast.value = false
+  }
 }
 </script>
 
@@ -87,9 +91,9 @@ const copyIconName = (name: string) => {
     <div class="icons-grid">
       <div
           v-for="icon in filteredIcons"
-          :key="icon.name"
+          :key="icon.label"
           class="icon-card"
-          @click="copyIconName(icon.name)"
+          @click="copyIconName(icon.label)"
       >
         <component
             :is="icon.component"
@@ -97,7 +101,7 @@ const copyIconName = (name: string) => {
             :stroke-width="strokeWidth"
             class="icon"
         />
-        <span class="icon-name">{{ icon.name }}</span>
+        <span class="icon-name">{{ icon.label }}</span>
       </div>
     </div>
 

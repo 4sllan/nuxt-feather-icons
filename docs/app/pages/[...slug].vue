@@ -54,11 +54,12 @@ const links = computed(() => {
 
   if (toc?.bottom?.edit) {
     links.push({
-      icon: 'i-lucide-external-link',
+      icon: 'ExternalLinkIcon',
       label: 'Edit this page',
-      to: `${toc.bottom.edit}/${page?.value?.stem}.${page?.value?.extension}`,
+      to: `${toc.bottom.edit}`,
       target: '_blank'
     })
+    // /${page?.value?.stem}.${page?.value?.extension}
   }
 
   return [
@@ -96,7 +97,7 @@ const links = computed(() => {
         <template #link-leading="{link}">
           <component
               :is="useFeatherIcon(link.icon as string)"
-              :size="17"
+              :size="18"
               :stroke-width="2"
           />
         </template>
@@ -127,7 +128,15 @@ const links = computed(() => {
             <UPageLinks
               :title="toc.bottom.title"
               :links="links"
-            />
+            >
+              <template #link-leading="{link}">
+                <component
+                    :is="useFeatherIcon(link.icon as string)"
+                    :size="18"
+                    :stroke-width="2"
+                />
+              </template>
+            </UPageLinks>
           </div>
         </template>
       </UContentToc>

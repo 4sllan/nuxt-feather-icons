@@ -12,7 +12,7 @@ const { header } = useAppConfig()
       class="h-8 w-auto shrink-0"
     />
 
-    <span>{{ header.title }}</span>
+    <span>{{ header?.title }}</span>
   </div>
 </template>
 
