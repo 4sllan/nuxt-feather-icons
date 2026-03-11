@@ -91,6 +91,8 @@ const copyIconName = async (name: string) => {
           v-for="icon in filteredIcons"
           :key="icon.name"
           class="icon-card"
+          role="button"
+          tabindex="0"
           @click="copyIconName(icon.name)"
       >
         <component
