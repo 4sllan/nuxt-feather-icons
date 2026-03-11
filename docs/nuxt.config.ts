@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
     app: {
-        baseURL: '/nuxt-feather-icons/',
+        baseURL: '/nuxt-feather-icons',
     },
 
     devtools: {
