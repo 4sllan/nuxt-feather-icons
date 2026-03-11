@@ -21,7 +21,7 @@ const { footer } = useAppConfig()
             color="neutral"
             variant="ghost"
         >
-<!--          <component size="20" :is="useFeatherIcon(link.icon)"/>-->
+          <component size="20" :is="useFeatherIcon(link.icon)"/>
         </UButton>
       </template>
     </template>

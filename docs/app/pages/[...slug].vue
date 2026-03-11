@@ -94,13 +94,13 @@ const links = computed(() => {
       <USeparator v-if="surround?.length" />
 
       <UContentSurround :surround="surround">
-<!--        <template #link-leading="{link}">-->
-<!--          <component-->
-<!--              :is="useFeatherIcon(link.icon as string)"-->
-<!--              :size="18"-->
-<!--              :stroke-width="2"-->
-<!--          />-->
-<!--        </template>-->
+        <template #link-leading="{link}">
+          <component
+              :is="useFeatherIcon(link.icon as string)"
+              :size="18"
+              :stroke-width="2"
+          />
+        </template>
       </UContentSurround>
     </UPageBody>
 
@@ -129,13 +129,13 @@ const links = computed(() => {
               :title="toc.bottom.title"
               :links="links"
             >
-<!--              <template #link-leading="{link}">-->
-<!--                <component-->
-<!--                    :is="useFeatherIcon(link.icon as string)"-->
-<!--                    :size="18"-->
-<!--                    :stroke-width="2"-->
-<!--                />-->
-<!--              </template>-->
+              <template #link-leading="{link}">
+                <component
+                    :is="useFeatherIcon(link.icon as string)"
+                    :size="18"
+                    :stroke-width="2"
+                />
+              </template>
             </UPageLinks>
           </div>
         </template>

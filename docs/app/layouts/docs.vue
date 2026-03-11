@@ -14,13 +14,13 @@ const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
               highlight
               :navigation="navigation"
           >
-<!--            <template #link-leading="{link}">-->
-<!--              <component-->
-<!--                  :is="useFeatherIcon(link.icon as string)"-->
-<!--                  :size="18"-->
-<!--                  :stroke-width="2"-->
-<!--              />-->
-<!--            </template>-->
+            <template #link-leading="{link}">
+              <component
+                  :is="useFeatherIcon(link.icon as string)"
+                  :size="18"
+                  :stroke-width="2"
+              />
+            </template>
           </UContentNavigation>
         </UPageAside>
       </template>
