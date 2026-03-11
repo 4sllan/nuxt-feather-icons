@@ -29,7 +29,7 @@ export default defineAppConfig({
     links: [
       {
         'icon': 'GithubIcon',
-        'to': 'https://github.com/4sllan/nuxt-umbu',
+        'to': 'https://github.com/4sllan/nuxt-feather-icons',
         'target': '_blank',
         'aria-label': 'GitHub'
       }
