@@ -18,7 +18,7 @@
 
 For full installation guides, configuration options, and the **Icon Gallery**, visit our documentation:
 
-👉 **[Documentation](https://4sllan.github.io/nuxt-feather-icons/)**
+[//]: # (👉 **[Documentation]&#40;https://4sllan.github.io/nuxt-feather-icons/&#41;**)
 
 ## ✨ Highlights
 
