@@ -18,6 +18,10 @@ export default defineNuxtConfig({
         'nuxt-llms'
     ],
 
+    routeRules: {
+        '/': { redirect: '/getting-started' }
+    },
+
     compatibilityDate: '2024-07-11',
 
     nitro: {
