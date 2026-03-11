@@ -32,69 +32,34 @@ export default defineNuxtConfig({
     },
 
     llms: {
-        domain: 'https://4sllan.github.io/nuxt-umbu/',
-        title: 'Nuxt Umbu',
-        description: 'Authentication module for Nuxt 4 with first-class Laravel Sanctum support and optional Passport driver.',
+        domain: 'https://4sllan.github.io/nuxt-feather-icons/',
+        title: 'Nuxt Feather Icons',
+        description: 'A optimized Nuxt module for Feather Icons featuring automatic tree-shaking, full SSR support, and customizable SVG attributes via props.',
         full: {
-            title: 'Nuxt Umbu – Authentication for Nuxt 4',
-            description: 'Complete documentation for Nuxt Umbu authentication module for Nuxt 4, featuring Laravel Sanctum integration, optional Passport strategies, CSRF protection, httpOnly cookies, route middleware, composables and two-factor authentication.'
+            title: 'Nuxt Feather Icons Documentation',
+            description: 'Comprehensive guide for integrating Feather Icons into Nuxt 3 applications. Includes installation, component usage, TypeScript support, and performance optimization details.'
         },
 
         sections: [
             {
-                title: 'Getting Started',
+                title: 'Installation & Setup',
                 contentCollection: 'docs',
                 contentFilters: [
                     {field: 'path', operator: 'LIKE', value: '/getting-started%'}
                 ]
             },
             {
-                title: 'Sanctum Integration',
+                title: 'Component Usage',
                 contentCollection: 'docs',
                 contentFilters: [
-                    {field: 'path', operator: 'LIKE', value: '/sanctum%'}
+                    {field: 'path', operator: 'LIKE', value: '/usage%'}
                 ]
             },
             {
-                title: 'Passport Integration',
+                title: 'API Reference & Props',
                 contentCollection: 'docs',
                 contentFilters: [
-                    {field: 'path', operator: 'LIKE', value: '/passport%'}
-                ]
-            },
-            {
-                title: 'Composables',
-                contentCollection: 'docs',
-                contentFilters: [
-                    {field: 'path', operator: 'LIKE', value: '/composables%'}
-                ]
-            },
-            {
-                title: 'Route Middleware',
-                contentCollection: 'docs',
-                contentFilters: [
-                    {field: 'path', operator: 'LIKE', value: '/middleware%'}
-                ]
-            },
-            {
-                title: 'Security',
-                contentCollection: 'docs',
-                contentFilters: [
-                    {field: 'path', operator: 'LIKE', value: '/security%'}
-                ]
-            },
-            {
-                title: 'Advanced Usage',
-                contentCollection: 'docs',
-                contentFilters: [
-                    {field: 'path', operator: 'LIKE', value: '/advanced%'}
-                ]
-            },
-            {
-                title: 'Troubleshooting',
-                contentCollection: 'docs',
-                contentFilters: [
-                    {field: 'path', operator: 'LIKE', value: '/troubleshooting%'}
+                    {field: 'path', operator: 'LIKE', value: '/api%'}
                 ]
             }
         ]
