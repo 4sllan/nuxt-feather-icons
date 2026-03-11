@@ -96,7 +96,7 @@ const links = computed(() => {
         <template #link-leading="{link}">
           <component
               :is="useFeatherIcon(link.icon as string)"
-              :size="17"
+              :size="18"
               :stroke-width="2"
           />
         </template>
@@ -127,7 +127,15 @@ const links = computed(() => {
             <UPageLinks
               :title="toc.bottom.title"
               :links="links"
-            />
+            >
+              <template #link-leading="{link}">
+                <component
+                    :is="useFeatherIcon(link.icon as string)"
+                    :size="18"
+                    :stroke-width="2"
+                />
+              </template>
+            </UPageLinks>
           </div>
         </template>
       </UContentToc>
