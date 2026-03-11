@@ -37,7 +37,7 @@ export default defineNuxtConfig({
         description: 'A optimized Nuxt module for Feather Icons featuring automatic tree-shaking, full SSR support, and customizable SVG attributes via props.',
         full: {
             title: 'Nuxt Feather Icons Documentation',
-            description: 'Comprehensive guide for integrating Feather Icons into Nuxt 3 applications. Includes installation, component usage, TypeScript support, and performance optimization details.'
+            description: 'Comprehensive guide for integrating Feather Icons into Nuxt applications. Includes installation, component usage, TypeScript support, and performance optimization details.'
         },
 
         sections: [
