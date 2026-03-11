@@ -3,7 +3,7 @@ await navigateTo('/getting-started')
 </script>
 
 <template>
-
+  <div></div>
 </template>
 
 <style scoped>
