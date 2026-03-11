@@ -56,9 +56,10 @@ const links = computed(() => {
     links.push({
       icon: 'ExternalLinkIcon',
       label: 'Edit this page',
-      // to: `${toc.bottom.edit}/${page?.value?.stem}.${page?.value?.extension}`,
+      to: `${toc.bottom.edit}`,
       target: '_blank'
     })
+    // /${page?.value?.stem}.${page?.value?.extension}
   }
 
   return [
