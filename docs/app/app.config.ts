@@ -51,7 +51,7 @@ export default defineAppConfig({
     title: 'Table of Contents',
     bottom: {
       title: 'Ready to contribute?',
-      edit: 'https://github.com/4sllan/nuxt-feather-icons?tab=contributing-ov-file',
+      edit: 'https://github.com/4sllan/nuxt-feather-icons/edit/main/docs/content',
       links: [
         {
           icon: 'StarIcon',
