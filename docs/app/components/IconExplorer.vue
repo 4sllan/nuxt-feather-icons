@@ -55,7 +55,7 @@ const isDark = computed({
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" :class="{'dark': isDark}">
     <header class="header">
       <div class="controls">
         <input
@@ -63,11 +63,10 @@ const isDark = computed({
             type="text"
             placeholder="Search icons..."
             class="search-input"
-            :class="{'dark': isDark}"
         />
 
         <div class="customization">
-          <div class="control-group" :class="{'dark': isDark}">
+          <div class="control-group">
             <label for="icon-size">Size</label>
             <input
                 id="icon-size"
@@ -81,7 +80,7 @@ const isDark = computed({
             <span class="value">{{ iconSize }}px</span>
           </div>
 
-          <div class="control-group" :class="{'dark': isDark}">
+          <div class="control-group">
             <label for="icon-stroke-width">Stroke</label>
             <input
                 id="icon-stroke-width"
@@ -103,7 +102,6 @@ const isDark = computed({
           v-for="icon in filteredIcons"
           :key="icon.name"
           class="icon-card"
-          :class="{'dark': isDark}"
           role="button"
           tabindex="0"
           @click="copyIconName(icon.name)"
@@ -113,9 +111,8 @@ const isDark = computed({
             :size="iconSize"
             :stroke-width="strokeWidth"
             class="icon"
-            :class="{'dark': isDark}"
         />
-        <span class="icon-name" :class="{'dark': isDark}">{{ icon.name }}</span>
+        <span class="icon-name">{{ icon.name }}</span>
       </div>
     </div>
 
@@ -131,13 +128,34 @@ const isDark = computed({
   </div>
 </template>
 <style scoped>
+/* 1. Definição das Variáveis de Tema */
 .container {
+  --bg-page: transparent;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #475569;
+  --text-muted: #64748b;
+  --input-focus: #00DC82;
+
   min-height: 100vh;
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   max-width: 1400px;
   margin: 0 auto;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* 2. Sobrescrita para o Dark Mode */
+.container.dark {
+  --bg-page: transparent;
+  --bg-card: #1e1f22;
+  --border-color: #313339;
+  --text-main: #8c8d8f;
+  --text-muted: #a7a8aa;
+}
+
+/* 3. Estilos usando as variáveis */
 .header {
   text-align: center;
   margin-bottom: 4rem;
@@ -152,29 +170,26 @@ const isDark = computed({
   width: 100%;
   padding: 1rem 1.5rem;
   font-size: 1.125rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   outline: none;
   transition: all 0.2s ease;
   margin-bottom: 2rem;
-  background: white;
-}
-
-.search-input.dark{
-  border: 2px solid #2d2e32;
-  background: #1e1f22;
+  background: var(--bg-card);
+  color: var(--text-main);
 }
 
 .search-input:focus {
-  border-color: #00DC82;
+  border-color: var(--input-focus);
   box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.1);
 }
 
 .customization {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .control-group {
@@ -186,63 +201,45 @@ const isDark = computed({
 .control-group label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #475569;
-  min-width: 80px;
-}
-
-.control-group.dark label{
-  color: white;
+  color: var(--text-main);
+  min-width: 60px;
 }
 
 .slider {
-  width: 150px;
+  width: 120px;
   height: 6px;
   border-radius: 3px;
   outline: none;
   -webkit-appearance: none;
-  background: linear-gradient(to right, #00DC82 0%, #36E4A8 100%);
+  background: var(--border-color);
   cursor: pointer;
 }
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: white;
-  border: 3px solid #00DC82;
+  background: var(--input-focus);
+  border: 2px solid white;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
-}
-
-.slider::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 220, 130, 0.3);
-}
-
-.slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: white;
-  border: 3px solid #00DC82;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
-}
-
-.slider::-moz-range-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 220, 130, 0.3);
 }
 
 .value {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #00DC82;
-  min-width: 50px;
+  color: var(--input-focus);
+  min-width: 45px;
+}
+
+.theme-toggle {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .icons-grid {
@@ -258,64 +255,42 @@ const isDark = computed({
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: white;
-  border: 2px solid #f1f5f9;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.icon-card.dark{
-  background: #1e1f22;
-  border: 2px solid #2d2e32;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .icon-card:hover {
-  border-color: #00DC82;
+  border-color: var(--input-focus);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 220, 130, 0.15);
-}
-
-.icon-card:hover .icon {
-  color: #00DC82;
-  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(0, 220, 130, 0.1);
 }
 
 .icon {
-  color: #475569;
+  color: var(--text-main);
   margin-bottom: 1rem;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
-.icon.dark{
-  color: #a4b7cf;
+.icon-card:hover .icon {
+  color: var(--input-focus);
+  transform: scale(1.1);
 }
 
 .icon-name {
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 500;
   text-align: center;
-  word-break: break-word;
-}
-
-.icon-name.dark{
-  color: #a4b7cf;
+  word-break: break-all;
 }
 
 .no-results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  color: #94a3b8;
-  gap: 1rem;
-}
-
-.no-results p {
-  font-size: 1.125rem;
-  font-weight: 500;
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-muted);
 }
 
 .toast {
@@ -323,7 +298,7 @@ const isDark = computed({
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #00DC82;
+  background: var(--input-focus);
   color: white;
   padding: 1rem 2rem;
   border-radius: 12px;
@@ -332,47 +307,12 @@ const isDark = computed({
   z-index: 1000;
 }
 
-.toast-enter-active,
-.toast-leave-active {
-  transition: all 0.3s ease;
-}
-
-.toast-enter-from,
-.toast-leave-to {
-  opacity: 0;
-  transform: translateX(-50%) translateY(1rem);
-}
+/* Transições do Toast */
+.toast-enter-active, .toast-leave-active { transition: all 0.3s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateX(-50%) translateY(1rem); }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 2rem 1rem;
-  }
-
-  .title {
-    font-size: 2.5rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .icons-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 1rem;
-  }
-
-  .icon-card {
-    padding: 1.5rem 0.75rem;
-  }
-
-  .customization {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .control-group {
-    flex-direction: column;
-    text-align: center;
-  }
+  .icons-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  .customization { flex-direction: column; }
 }
 </style>
