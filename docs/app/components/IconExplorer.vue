@@ -43,15 +43,7 @@ const copyIconName = async (name: string) => {
 }
 
 const colorMode = useColorMode()
-
-const isDark = computed({
-  get() {
-    return colorMode.value === 'dark'
-  },
-  set(_isDark) {
-    colorMode.preference = _isDark ? 'dark' : 'light'
-  }
-})
+const isDark = computed(() => !colorMode.unknown && colorMode.value === 'dark')
 </script>
 
 <template>
