@@ -46,7 +46,15 @@ provide('navigation', navigation)
       <LazyUContentSearch
         :files="files"
         :navigation="navigation"
-      />
+      >
+        <template #item-leading="{item}">
+          <component
+              :is="useFeatherIcon(item.icon as string)"
+              :size="18"
+              :stroke-width="2"
+          />
+        </template>
+      </LazyUContentSearch>
     </ClientOnly>
   </UApp>
 </template>
