@@ -41,6 +41,17 @@ const copyIconName = async (name: string) => {
     showToast.value = false
   }
 }
+
+const colorMode = useColorMode()
+
+const isDark = computed({
+  get() {
+    return colorMode.value === 'dark'
+  },
+  set(_isDark) {
+    colorMode.preference = _isDark ? 'dark' : 'light'
+  }
+})
 </script>
 
 <template>
@@ -52,10 +63,11 @@ const copyIconName = async (name: string) => {
             type="text"
             placeholder="Search icons..."
             class="search-input"
+            :class="{'dark': isDark}"
         />
 
         <div class="customization">
-          <div class="control-group">
+          <div class="control-group" :class="{'dark': isDark}">
             <label for="icon-size">Size</label>
             <input
                 id="icon-size"
@@ -69,7 +81,7 @@ const copyIconName = async (name: string) => {
             <span class="value">{{ iconSize }}px</span>
           </div>
 
-          <div class="control-group">
+          <div class="control-group" :class="{'dark': isDark}">
             <label for="icon-stroke-width">Stroke</label>
             <input
                 id="icon-stroke-width"
@@ -91,6 +103,7 @@ const copyIconName = async (name: string) => {
           v-for="icon in filteredIcons"
           :key="icon.name"
           class="icon-card"
+          :class="{'dark': isDark}"
           role="button"
           tabindex="0"
           @click="copyIconName(icon.name)"
@@ -100,8 +113,9 @@ const copyIconName = async (name: string) => {
             :size="iconSize"
             :stroke-width="strokeWidth"
             class="icon"
+            :class="{'dark': isDark}"
         />
-        <span class="icon-name">{{ icon.name }}</span>
+        <span class="icon-name" :class="{'dark': isDark}">{{ icon.name }}</span>
       </div>
     </div>
 
@@ -138,11 +152,16 @@ const copyIconName = async (name: string) => {
   width: 100%;
   padding: 1rem 1.5rem;
   font-size: 1.125rem;
-  border: 2px solid #2d2e32;
+  border: 2px solid #e2e8f0;
   border-radius: 12px;
   outline: none;
   transition: all 0.2s ease;
   margin-bottom: 2rem;
+  background: white;
+}
+
+.search-input.dark{
+  border: 2px solid #2d2e32;
   background: #1e1f22;
 }
 
@@ -167,8 +186,12 @@ const copyIconName = async (name: string) => {
 .control-group label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: white;
+  color: #475569;
   min-width: 80px;
+}
+
+.control-group.dark label{
+  color: white;
 }
 
 .slider {
@@ -235,11 +258,16 @@ const copyIconName = async (name: string) => {
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: #1e1f22;
-  border: 2px solid #2d2e32;
+  background: white;
+  border: 2px solid #f1f5f9;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.icon-card.dark{
+  background: #1e1f22;
+  border: 2px solid #2d2e32;
 }
 
 .icon-card:hover {
@@ -254,17 +282,25 @@ const copyIconName = async (name: string) => {
 }
 
 .icon {
-  color: #a4b7cf;
+  color: #475569;
   margin-bottom: 1rem;
   transition: all 0.2s ease;
 }
 
+.icon.dark{
+  color: #a4b7cf;
+}
+
 .icon-name {
   font-size: 0.875rem;
-  color: #a4b7cf;
+  color: #64748b;
   font-weight: 500;
   text-align: center;
   word-break: break-word;
+}
+
+.icon-name.dark{
+  color: #a4b7cf;
 }
 
 .no-results {
