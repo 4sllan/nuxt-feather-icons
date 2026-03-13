@@ -15,49 +15,22 @@ const PACKAGE_NAME = 'nuxt-feather-icons'
 
 export interface ModuleOptions {
     /**
-     * Optional prefix for icon component names.
-     *
-     * Example:
-     * If prefix is "Fi", the icon component will be:
-     * FiHomeIcon, FiUserIcon, etc.
-     *
-     * Default: no prefix
+     * Optional prefix for icons. Example: 'Fi' -> FiHomeIcon
      */
     prefix?: string
-
     /**
-     * Default size for all icons.
-     *
-     * This value will be applied to both `width` and `height`
-     * of the generated SVG.
-     *
-     * Example:
-     * 24 -> width="24" height="24"
-     *
-     * Default: 24
+     * Default icon size
+     * @default 24
      */
-    size?: number | string
-
+    size?: string | number
     /**
-     * Default stroke width for the SVG icons.
-     *
-     * Feather icons are stroke-based, so this controls
-     * the thickness of the lines.
-     *
-     * Example:
-     * 2 -> stroke-width="2"
-     *
-     * Default: 2
+     * Default stroke width
+     * @default 2
      */
-    strokeWidth?: number | string
-
+    strokeWidth?: string | number
     /**
-     * Default CSS class applied to all icon components.
-     *
-     * Useful for applying global styles like color or spacing.
-     *
-     * Example:
-     * "text-gray-500"
+     * Default CSS classes
+     * @default ''
      */
     class?: string
 }
