@@ -20,7 +20,7 @@ function pascalCase(str: string) {
 }
 
 // O template agora consome o useRuntimeConfig()
-const templateComponent = (attrs: FeatherAttrs, innerHTML: string, componentName: string) => `
+const templateComponent = (attrs: FeatherAttrs, innerHTML: string, componentName: string, name: string) => `
 import { h, computed } from 'vue'
 import { useRuntimeConfig } from '#imports'
 
@@ -41,7 +41,7 @@ export default {
     }
   },
   setup(props) {
-    const config = useRuntimeConfig().public.featherIconsn || {}
+    const config = useRuntimeConfig().public.featherIcons || {}
 
     const size = computed(() => {
       const s = props.size ?? config.size ?? 24
@@ -55,7 +55,7 @@ export default {
     const classes = computed(() => {
       return [
         'feather', 
-        'feather-${attrs.name || ""}', 
+        'feather-${name || ""}', 
         config.class, 
         props.class
       ].filter(Boolean).join(' ').trim()
@@ -63,9 +63,9 @@ export default {
 
     return () => h('svg', {
       ...${JSON.stringify(attrs)},
-      width: finalSize.value,
-      height: finalSize.value,
-      'stroke-width': finalStrokeWidth.value,
+      width: size.value,
+      height: size.value,
+      'stroke-width': strokeWidth.value,
       class: classes.value,
       innerHTML: \`${innerHTML}\`
     })
@@ -101,7 +101,8 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
             const component = templateComponent(
                 iconData.attrs,
                 iconData.contents,
-                icon.componentPascalName
+                icon.componentPascalName,
+                icon.name
             )
 
             const filepath = path.join(
