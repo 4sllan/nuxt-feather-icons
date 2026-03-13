@@ -15,10 +15,51 @@ const PACKAGE_NAME = 'nuxt-feather-icons'
 
 export interface ModuleOptions {
     /**
-     * Optional prefix for icons
-     * Example: FiHomeIcon
+     * Optional prefix for icon component names.
+     *
+     * Example:
+     * If prefix is "Fi", the icon component will be:
+     * FiHomeIcon, FiUserIcon, etc.
+     *
+     * Default: no prefix
      */
     prefix?: string
+
+    /**
+     * Default size for all icons.
+     *
+     * This value will be applied to both `width` and `height`
+     * of the generated SVG.
+     *
+     * Example:
+     * 24 -> width="24" height="24"
+     *
+     * Default: 24
+     */
+    size?: number | string
+
+    /**
+     * Default stroke width for the SVG icons.
+     *
+     * Feather icons are stroke-based, so this controls
+     * the thickness of the lines.
+     *
+     * Example:
+     * 2 -> stroke-width="2"
+     *
+     * Default: 2
+     */
+    strokeWidth?: number | string
+
+    /**
+     * Default CSS class applied to all icon components.
+     *
+     * Useful for applying global styles like color or spacing.
+     *
+     * Example:
+     * "text-gray-500"
+     */
+    class?: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -31,7 +72,10 @@ export default defineNuxtModule<ModuleOptions>({
     },
 
     defaults: {
-        prefix: ''
+        prefix: '',
+        size: 24,
+        strokeWidth: 2,
+        class: ''
     },
 
     async setup(options, nuxt) {
@@ -87,7 +131,10 @@ export default defineNuxtModule<ModuleOptions>({
         })
 
         nuxt.options.runtimeConfig.public.featherIcons = {
-            prefix: options.prefix || ''
+            prefix: options.prefix || '',
+            size: options.size || 24,
+            strokeWidth: options.strokeWidth || 2,
+            class: options.class || ''
         }
 
         nuxt.hook('prepare:types', ({references}) => {
