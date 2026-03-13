@@ -19,19 +19,21 @@ function pascalCase(str: string) {
     return str.replace(/(^\w|-\w)/g, s => s.replace('-', '').toUpperCase())
 }
 
-const templateComponent = (attrs: FeatherAttrs, innerHTML: string) => `
+// O template agora consome o useRuntimeConfig()
+const templateComponent = (attrs: FeatherAttrs, innerHTML: string, componentName: string, name: string) => `
 import { h, computed } from 'vue'
+import { useRuntimeConfig } from '#imports'
 
 export default {
-  name: 'FeatherIcon',
+  name: '${componentName}',
   props: {
     size: {
       type: [String, Number],
-      default: 24
+      default: null 
     },
     strokeWidth: {
       type: [String, Number],
-      default: 2
+      default: null
     },
     class: {
       type: String,
@@ -39,18 +41,35 @@ export default {
     }
   },
   setup(props) {
-    const size = computed(() => 
-      typeof props.size === 'string' && props.size.endsWith('x')
-        ? props.size.slice(0, -1) + 'em'
-        : props.size + 'px'
-    )
+    const config = useRuntimeConfig().public.featherIcons || {}
+
+    const size = computed(() => {
+      const s = props.size ?? config.size ?? 24
+      // Verifica se é uma string no formato '1x', '1.5x', etc.
+      if (typeof s === 'string' && /^\\d+(\\.\\d+)?x$/.test(s)) {
+        return s.slice(0, -1) + 'em'
+      }
+      // Se for número, adiciona px. Se for string (já com unidade), mantém.
+      return typeof s === 'number' ? s + 'px' : s
+    })
+
+    const strokeWidth  = computed(() => props.strokeWidth ?? config.strokeWidth ?? 2)
+    
+    const classes = computed(() => {
+      return [
+        'feather', 
+        'feather-${name || ""}', 
+        config.class, 
+        props.class
+      ].filter(Boolean).join(' ').trim()
+    })
 
     return () => h('svg', {
       ...${JSON.stringify(attrs)},
       width: size.value,
       height: size.value,
-      'stroke-width': props.strokeWidth,
-      class: '${attrs.class || ''}' + ' ' + props.class,
+      'stroke-width': strokeWidth.value,
+      class: classes.value,
       innerHTML: \`${innerHTML}\`
     })
   }
@@ -68,10 +87,7 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
         componentPascalName: pascalCase(`${name}-icon`)
     }))
 
-
-
     const resolver = createResolver(import.meta.url)
-
     const componentsDir = resolver.resolve('../runtime/components')
 
     await fs.mkdir(componentsDir, { recursive: true })
@@ -84,9 +100,12 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
                 throw new Error(`Icon "${icon.name}" not found in feather-icons`)
             }
 
+            // Passamos o nome do ícone para o template para melhor debug no Vue DevTools
             const component = templateComponent(
                 iconData.attrs,
-                iconData.contents
+                iconData.contents,
+                icon.componentPascalName,
+                icon.name
             )
 
             const filepath = path.join(
@@ -104,6 +123,5 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
     )
 
     cache = result
-
     return result
 }

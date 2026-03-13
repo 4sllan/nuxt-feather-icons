@@ -15,10 +15,24 @@ const PACKAGE_NAME = 'nuxt-feather-icons'
 
 export interface ModuleOptions {
     /**
-     * Optional prefix for icons
-     * Example: FiHomeIcon
+     * Optional prefix for icons. Example: 'Fi' -> FiHomeIcon
      */
     prefix?: string
+    /**
+     * Default icon size
+     * @default 24
+     */
+    size?: string | number
+    /**
+     * Default stroke width
+     * @default 2
+     */
+    strokeWidth?: string | number
+    /**
+     * Default CSS classes
+     * @default ''
+     */
+    class?: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -31,7 +45,10 @@ export default defineNuxtModule<ModuleOptions>({
     },
 
     defaults: {
-        prefix: ''
+        prefix: '',
+        size: 24,
+        strokeWidth: 2,
+        class: ''
     },
 
     async setup(options, nuxt) {
@@ -87,7 +104,10 @@ export default defineNuxtModule<ModuleOptions>({
         })
 
         nuxt.options.runtimeConfig.public.featherIcons = {
-            prefix: options.prefix || ''
+            prefix: options.prefix || '',
+            size: options.size || 24,
+            strokeWidth: options.strokeWidth || 2,
+            class: options.class || ''
         }
 
         nuxt.hook('prepare:types', ({references}) => {
