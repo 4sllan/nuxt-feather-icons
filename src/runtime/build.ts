@@ -94,7 +94,7 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
             const iconData = feather.icons[icon.name]
 
             if (!iconData) {
-                throw new Error(`Icon "\${icon.name}" not found in feather-icons`)
+                throw new Error(`Icon "${icon.name}" not found in feather-icons`)
             }
 
             // Passamos o nome do ícone para o template para melhor debug no Vue DevTools
