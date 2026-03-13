@@ -1,4 +1,57 @@
 
+## v1.4.1
+
+[compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.4.0...v1.4.1)
+
+### 🚀 Enhancements
+
+- **nuxt-feather-icons:** Enable feather icons in navigation components ([4a83ee5](https://github.com/4sllan/nuxt-feather-icons/commit/4a83ee5))
+- **IconExplorer:** Add dark mode support ([70268a3](https://github.com/4sllan/nuxt-feather-icons/commit/70268a3))
+- **nuxt-feather-icons:** Display feather icons in search results ([8438653](https://github.com/4sllan/nuxt-feather-icons/commit/8438653))
+- **nuxt-feather-icons:** Add default size, stroke width, and CSS class options ([4c8fcfc](https://github.com/4sllan/nuxt-feather-icons/commit/4c8fcfc))
+- **nuxt-feather-icons:** Add global configuration support for icon props ([2acfdef](https://github.com/4sllan/nuxt-feather-icons/commit/2acfdef))
+- **nuxt-feather-icons:** Enable default prefix and add icon rendering parameters ([ca31abd](https://github.com/4sllan/nuxt-feather-icons/commit/ca31abd))
+
+### 🩹 Fixes
+
+- **docs:** Update documentation edit links ([de4fd0b](https://github.com/4sllan/nuxt-feather-icons/commit/de4fd0b))
+- **nuxt-feather-icons:** Fix size unit parsing logic ([7d3bdfc](https://github.com/4sllan/nuxt-feather-icons/commit/7d3bdfc))
+
+### 💅 Refactors
+
+- **nuxt-feather-icons:** Migrate root route redirect to global middleware ([68d6cf1](https://github.com/4sllan/nuxt-feather-icons/commit/68d6cf1))
+- **IconExplorer:** Implement theme using CSS variables ([f130e66](https://github.com/4sllan/nuxt-feather-icons/commit/f130e66))
+- **nuxt-feather-icons:** Remove manual preference setter and simplify isDark logic ([48c97e9](https://github.com/4sllan/nuxt-feather-icons/commit/48c97e9))
+- **nuxt-feather-icons:** Add name parameter and fix typo in configuration key ([eedc098](https://github.com/4sllan/nuxt-feather-icons/commit/eedc098))
+
+### 📖 Documentation
+
+- **nuxt-feather-icons:** Update root route redirect - Redirect root path to the module getting started guide ([2471f0d](https://github.com/4sllan/nuxt-feather-icons/commit/2471f0d))
+- **nuxt-feather-icons:** Add root route redirect page ([5e53d6b](https://github.com/4sllan/nuxt-feather-icons/commit/5e53d6b))
+- **nuxt-feather-icons:** Add Vue Props documentation and TypeScript support ([21a1f6b](https://github.com/4sllan/nuxt-feather-icons/commit/21a1f6b))
+- **nuxt-feather-icons:** Clarify size prop documentation ([65c4806](https://github.com/4sllan/nuxt-feather-icons/commit/65c4806))
+- **nuxt-feather-icons:** Update prop type notation and formatting ([c2dd4c1](https://github.com/4sllan/nuxt-feather-icons/commit/c2dd4c1))
+- **nuxt-feather-icons:** Fix formatting for usage description ([a4f9df6](https://github.com/4sllan/nuxt-feather-icons/commit/a4f9df6))
+- **nuxt-feather-icons:** Update README with global configuration options ([6bc172d](https://github.com/4sllan/nuxt-feather-icons/commit/6bc172d))
+- **nuxt-feather-icons:** Update README with global configuration options ([3d6f89e](https://github.com/4sllan/nuxt-feather-icons/commit/3d6f89e))
+- **nuxt-feather-icons:** Add documentation for new module configuration options ([dba9ccc](https://github.com/4sllan/nuxt-feather-icons/commit/dba9ccc))
+- **nuxt-feather-icons:** Add documentation for module configuration options ([9f5ce6c](https://github.com/4sllan/nuxt-feather-icons/commit/9f5ce6c))
+
+### 🏡 Chore
+
+- **docs:** Update nuxt-feather-icons dependency to v1.4.0 ([827099a](https://github.com/4sllan/nuxt-feather-icons/commit/827099a))
+- **core:** Remove .npmrc files ([960f018](https://github.com/4sllan/nuxt-feather-icons/commit/960f018))
+- **docs:** Add .npmrc ([fbc7e71](https://github.com/4sllan/nuxt-feather-icons/commit/fbc7e71))
+- **nuxt-feather-icons:** Add placeholder div ([e028cc1](https://github.com/4sllan/nuxt-feather-icons/commit/e028cc1))
+
+### 🎨 Styles
+
+- **nuxt-feather-icons:** Improve JSDoc formatting and type order ([005b727](https://github.com/4sllan/nuxt-feather-icons/commit/005b727))
+
+### ❤️ Contributors
+
+- Aslan.gama <aslan.gama@sixchains.com.br>
+
 ## v1.4.0
 
 [compare changes](https://github.com/4sllan/nuxt-feather-icons/compare/v1.3.9...v1.4.0)
