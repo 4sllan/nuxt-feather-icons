@@ -49,9 +49,19 @@ npx nuxi@latest module add nuxt-feather-icons
 ```typescript
 export default defineNuxtConfig({
   modules: ['nuxt-feather-icons'],
-  nuxtFeatherIcons: {
-    prefix: 'F' // Optional: results in <FHomeIcon />
-  }
+    nuxtFeatherIcons: {
+        // Prefix for icon components (e.g. <FHomeIcon />)
+        prefix: 'F',
+
+        // Global default size (string or number)
+        size: 24,
+
+        // Global default stroke width
+        strokeWidth: 2,
+
+        // Global default CSS classes
+        class: 'my-default-icon-class'
+    }
 })
 ```
 
