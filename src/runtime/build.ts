@@ -45,9 +45,12 @@ export default {
 
     const size = computed(() => {
       const s = props.size ?? config.size ?? 24
-      return typeof s === 'string' && s.endsWith('x')
-        ? s.slice(0, -1) + 'em'
-        : s + 'px'
+      // Verifica se é uma string no formato '1x', '1.5x', etc.
+      if (typeof s === 'string' && /^\\d+(\\.\\d+)?x$/.test(s)) {
+        return s.slice(0, -1) + 'em'
+      }
+      // Se for número, adiciona px. Se for string (já com unidade), mantém.
+      return typeof s === 'number' ? s + 'px' : s
     })
 
     const strokeWidth  = computed(() => props.strokeWidth ?? config.strokeWidth ?? 2)
