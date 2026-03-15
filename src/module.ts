@@ -15,21 +15,35 @@ const PACKAGE_NAME = 'nuxt-feather-icons'
 
 export interface ModuleOptions {
     /**
-     * Optional prefix for icons. Example: 'Fi' -> FiHomeIcon
+     * The icon library provider to use.
+     * 'feather' uses the classic Feather Icons.
+     * 'lucide' uses Lucide Icons (a community-run fork with more icons).
+     * @default 'lucide'
+     */
+    provider?: 'feather' | 'lucide'
+
+    /**
+     * Optional prefix for icons.
+     * If set to 'Base', components will be named like <BaseHomeIcon />
+     * @default ''
      */
     prefix?: string
+
     /**
-     * Default icon size
+     * Default icon size.
+     * Can be a number (px) or a string like '1.5x' (em).
      * @default 24
      */
     size?: string | number
+
     /**
-     * Default stroke width
+     * Default stroke width for the icon paths.
      * @default 2
      */
     strokeWidth?: string | number
+
     /**
-     * Default CSS classes
+     * Default CSS classes to be applied to all icons.
      * @default ''
      */
     class?: string
@@ -45,6 +59,7 @@ export default defineNuxtModule<ModuleOptions>({
     },
 
     defaults: {
+        provider: 'lucide',
         prefix: '',
         size: 24,
         strokeWidth: 2,
@@ -55,9 +70,11 @@ export default defineNuxtModule<ModuleOptions>({
         const logger = useLogger(PACKAGE_NAME)
         const resolver = createResolver(import.meta.url)
 
-        logger.info('Generating Feather icons components...')
+        const provider = options.provider === 'lucide' ? 'Lucide' : 'Feather'
 
-        const icons = await buildIcons(nuxt)
+        logger.info(`Generating ${provider} icons components...`)
+
+        const icons = await buildIcons(nuxt, options)
 
         const componentsDir = resolver.resolve('./runtime/components')
 
@@ -104,6 +121,7 @@ export default defineNuxtModule<ModuleOptions>({
         })
 
         nuxt.options.runtimeConfig.public.featherIcons = {
+            provider: options.provider || 'lucide',
             prefix: options.prefix || '',
             size: options.size || 24,
             strokeWidth: options.strokeWidth || 2,
@@ -126,6 +144,6 @@ export default defineNuxtModule<ModuleOptions>({
             tsConfig.compilerOptions.paths['#feather-icons-map'] = [template.dst]
         })
 
-        logger.success(`${icons.length} Feather icons registered`)
+        logger.success(`${icons.length} ${provider} icons registered`)
     }
 })
