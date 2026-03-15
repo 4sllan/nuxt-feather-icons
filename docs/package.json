@@ -36,6 +36,5 @@
       "better-sqlite3",
       "sqlite3"
     ]
-  },
-  "version": "0.0.1"
+  }
 }
