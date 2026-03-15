@@ -14,7 +14,7 @@ type FeatherAttrs = {
     [key: string]: string | number
 }
 
-let cache: Record<string, ModuleIconsNames[]> = {}
+const cache: Record<string, ModuleIconsNames[]> = {}
 
 function pascalCase(str: string) {
     return str.replace(/(^\w|-\w)/g, s => s.replace('-', '').toUpperCase())
