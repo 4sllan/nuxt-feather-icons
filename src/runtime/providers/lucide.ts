@@ -1,21 +1,19 @@
+import * as lucide from 'lucide'
 import type { IconNormalized } from './index'
 
 export function getLucideIcons(): IconNormalized[] {
-    // Importamos o mapa de ícones
-    const lucide = require('lucide')
-
-    // O Lucide exporta um objeto 'icons'. Cada ícone nele é um array:
+    // Lucide exports an 'icons' object. Each icon is an array:
     // [ ['path', { d: '...' }], ['circle', { ... }] ]
-    const iconsMap = lucide.icons
+    const iconsMap = (lucide as any).icons || lucide
 
     if (!iconsMap) {
-        throw new Error('Não foi possível carregar os ícones do Lucide. Verifique se o pacote "lucide" está instalado.')
+        throw new Error('Could not load Lucide icons. Please ensure the "lucide" package is installed.')
     }
 
     return Object.entries(iconsMap).map(([name, icon]: [string, any]) => {
-        // No Lucide puro, o 'icon' em si já é o array de elementos (children)
-        // Se estiver usando lucide-vue, a estrutura pode variar, mas no core JS é um array.
-        const nodes = Array.isArray(icon) ? icon : (icon.children || [])
+        // In pure Lucide, the 'icon' itself is the array of elements (children).
+        // If using lucide-vue or other wrappers, the structure might vary, so we fallback to .children.
+        const nodes = Array.isArray(icon) ? icon : (icon?.children || [])
 
         const contents = nodes
             .map(([tagName, attrs]: [string, any]) => {
@@ -28,7 +26,7 @@ export function getLucideIcons(): IconNormalized[] {
 
         return {
             name,
-            // Atributos padrão para SVGs do Lucide
+            // Default SVG attributes for Lucide icons
             attrs: {
                 xmlns: 'http://www.w3.org/2000/svg',
                 width: 24,
