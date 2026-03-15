@@ -77,7 +77,7 @@ export default {
 `.trim()
 
 export async function buildIcons(nuxt: Nuxt, options: ModuleOptions): Promise<ModuleIconsNames[]> {
-    const provider = options.provider || 'feather'
+    const provider = options.provider || 'lucide'
 
     if (cache[provider]) {
         return cache[provider]
