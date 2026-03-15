@@ -74,6 +74,7 @@
     "vue-tsc": "^3.2.5"
   },
   "dependencies": {
-    "feather-icons": "^4.29.2"
+    "feather-icons": "^4.29.2",
+    "lucide": "^0.577.0"
   }
 }
