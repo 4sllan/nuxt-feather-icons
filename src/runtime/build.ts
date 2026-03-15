@@ -3,6 +3,8 @@ import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import { createResolver } from '@nuxt/kit'
 import type { Nuxt } from '@nuxt/schema'
+import type { ModuleOptions } from '../module'
+import { getIcons } from './providers'
 
 type ModuleIconsNames = {
     componentName: string
@@ -13,12 +15,11 @@ type FeatherAttrs = {
     [key: string]: string | number
 }
 
-let cache: ModuleIconsNames[] | null = null
+let cache: Record<string, ModuleIconsNames[]> = {}
 
 function pascalCase(str: string) {
     return str.replace(/(^\w|-\w)/g, s => s.replace('-', '').toUpperCase())
 }
-
 // O template agora consome o useRuntimeConfig()
 const templateComponent = (attrs: FeatherAttrs, innerHTML: string, componentName: string, name: string) => `
 import { h, computed } from 'vue'
@@ -76,15 +77,19 @@ export default {
 }
 `.trim()
 
-export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
-    if (cache) {
-        return cache
+export async function buildIcons(nuxt: Nuxt, options: ModuleOptions): Promise<ModuleIconsNames[]> {
+    const provider = options.provider || 'feather'
+
+    if (cache[provider]) {
+        return cache[provider]
     }
 
-    const icons = Object.keys(feather.icons).map((name) => ({
-        name,
-        componentName: `${name}-icon`,
-        componentPascalName: pascalCase(`${name}-icon`)
+    const iconsRaw = getIcons(provider)
+
+    const icons = iconsRaw.map((icon) => ({
+        ...icon,
+        componentName: `${icon.name}-icon`,
+        componentPascalName: pascalCase(`${icon.name}-icon`)
     }))
 
     const resolver = createResolver(import.meta.url)
@@ -94,16 +99,9 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
 
     const result = await Promise.all(
         icons.map(async (icon) => {
-            const iconData = feather.icons[icon.name]
-
-            if (!iconData) {
-                throw new Error(`Icon "${icon.name}" not found in feather-icons`)
-            }
-
-            // Passamos o nome do ícone para o template para melhor debug no Vue DevTools
             const component = templateComponent(
-                iconData.attrs,
-                iconData.contents,
+                icon.attrs,
+                icon.contents,
                 icon.componentPascalName,
                 icon.name
             )
@@ -122,6 +120,6 @@ export async function buildIcons(nuxt: Nuxt): Promise<ModuleIconsNames[]> {
         })
     )
 
-    cache = result
+    cache[provider] = result
     return result
 }
