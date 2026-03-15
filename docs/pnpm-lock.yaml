@@ -30,8 +30,8 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1(@parcel/watcher@2.5.6)(@types/node@25.4.0)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4)(eslint@9.39.4(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.32.0)(magicast@0.5.2)(optionator@0.9.4)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@25.4.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@3.2.5(typescript@5.9.3))(yaml@2.8.2)
       nuxt-feather-icons:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.4.2
+        version: 1.4.2
       nuxt-llms:
         specifier: ^0.2.0
         version: 0.2.0(magicast@0.5.2)
@@ -4319,6 +4319,9 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
+  lucide@0.577.0:
+    resolution: {integrity: sha512-PpC/m5eOItp/WU/GlQPFBXDOhq6HibL73KzYP37OX3LM7VmzWQF8voEj8QRWUFvy9FIKfeDQkWYoyS1D/MdWFA==}
+
   magic-regexp@0.10.0:
     resolution: {integrity: sha512-Uly1Bu4lO1hwHUW0CQeSWuRtzCMNO00CmXtS8N6fyvB3B979GOEEeAkiTUDsmbYLAbvpUS/Kt5c4ibosAzVyVg==}
 
@@ -4655,8 +4658,8 @@ packages:
     resolution: {integrity: sha512-2/mSSqutOX8t+r8cAX1yUYwAPBqicPO5Rfum3XaHVszxKCF4tXEXBiPGfJY9Zn69x/CIeOdw+aM9wmHzQ5Q+lA==}
     hasBin: true
 
-  nuxt-feather-icons@1.4.0:
-    resolution: {integrity: sha512-kqYila1jrEyGYVwjmhQc2P9E3gzxjpp27317JXB20NHrEwUztBrTGZbyKLwyj5sD3/cddLsymUEpkK2AeNlXeQ==}
+  nuxt-feather-icons@1.4.2:
+    resolution: {integrity: sha512-ua7z7BAoC04imyxGnkOFvFcl+AeCS2ctz3DKB5iBc+CW+uNzxNpMD6mMEy1WOLNzf0zSENU3C7BzfCd8TDqY9A==}
 
   nuxt-llms@0.2.0:
     resolution: {integrity: sha512-GoEW00x8zaZ1wS0R0aOYptt3b54JEaRwlyVtuAiQoH51BwYdjN5/3+00/+4wi39M5cT4j5XcnGwOxJ7v4WVb9A==}
@@ -10828,6 +10831,8 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
+  lucide@0.577.0: {}
+
   magic-regexp@0.10.0:
     dependencies:
       estree-walker: 3.0.3
@@ -11430,9 +11435,10 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt-feather-icons@1.4.0:
+  nuxt-feather-icons@1.4.2:
     dependencies:
       feather-icons: 4.29.2
+      lucide: 0.577.0
 
   nuxt-llms@0.2.0(magicast@0.5.2):
     dependencies:
