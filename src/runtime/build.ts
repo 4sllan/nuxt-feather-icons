@@ -1,4 +1,3 @@
-import feather from 'feather-icons'
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import { createResolver } from '@nuxt/kit'
