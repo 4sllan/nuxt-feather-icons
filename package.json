@@ -1,6 +1,6 @@
 {
   "name": "nuxt-feather-icons",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "High-performance Feather Icons for Nuxt with full Tree-Shaking and SSR support.",
   "author": "4sllan (https://github.com/4sllan)",
   "homepage": "https://4sllan.github.io/nuxt-feather-icons/",
