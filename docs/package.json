@@ -14,22 +14,22 @@
     "validate": "pnpm lint && pnpm typecheck"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.85",
-    "@iconify-json/simple-icons": "^1.2.66",
-    "@iconify-json/vscode-icons": "^1.2.39",
-    "@nuxt/content": "^3.12.0",
-    "@nuxt/image": "^2.0.0",
-    "@nuxt/ui": "^4.5.0",
+    "@iconify-json/lucide": "^1.2.129",
+    "@iconify-json/simple-icons": "^1.2.94",
+    "@iconify-json/vscode-icons": "^1.2.76",
+    "@nuxt/content": "^3.16.0",
+    "@nuxt/image": "^2.1.0",
+    "@nuxt/ui": "^4.11.0",
     "nuxt": "^4.3.1",
     "nuxt-feather-icons": "^1.4.2",
     "nuxt-llms": "^0.2.0",
     "nuxt-og-image": "^5.1.13"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.12.1",
-    "eslint": "^9.39.2",
+    "@nuxt/eslint": "^1.17.0",
+    "eslint": "^9.39.5",
     "typescript": "^5.9.3",
-    "vue-tsc": "^3.2.2"
+    "vue-tsc": "^3.3.11"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
