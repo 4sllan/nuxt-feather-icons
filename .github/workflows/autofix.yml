@@ -19,15 +19,15 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.15.9
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.20.2
           cache: pnpm
 
       - run: pnpm install
 
       - run: pnpm lint
 
-      - uses: autofix-ci/action@v1.3.3
+      - uses: autofix-ci/action@v1.3.4
